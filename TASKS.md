@@ -192,7 +192,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-007 – Markt mit Verkauf einbauen
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Spieler kann Ressourcen verkaufen und Geld verdienen.
 
 **Umfang:**

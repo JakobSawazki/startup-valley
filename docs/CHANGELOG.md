@@ -14,6 +14,32 @@ Format:
 
 ---
 
+## [0.0.9-market] – 2026-06-16
+
+### Added
+
+- Marktpanel ergänzt: Klick auf den Markt öffnet eine Verkaufsansicht.
+- Zentrale Marktpreise in `src/state.js` ergänzt: Holz `2 EUR`, Stein `3 EUR`.
+- Verkaufsmengen `1`, `5`, `10` und `Alles` ergänzt.
+- Verkauf von Holz und Stein erhöht Geld und senkt die verkaufte Ressource.
+- Verkaufserfolg und fehlende Ressourcen werden im Marktpanel angezeigt.
+
+### Changed
+
+- CSS/JS-Cache-Version auf `0.0.9` aktualisiert.
+- Kontextpanel rendert für den Markt jetzt eine eigene Handelsansicht.
+- HUD aktualisiert sich direkt nach Marktverkäufen.
+
+### Fixed
+
+- Verkauf ist ohne vorhandene Ressource deaktiviert und kann keine negativen Ressourcenstände erzeugen.
+- Verkaufsmengen über dem vorhandenen Bestand bleiben deaktiviert.
+
+### Docs
+
+- `TASK-007` abgeschlossen und nächsten Schritt auf `TASK-008` aktualisiert.
+- README, `docs/VERSION_STATE.md` und `docs/HANDOFF.md` auf den Marktverkauf aktualisiert.
+
 ## [0.0.8-building-upgrades] – 2026-06-16
 
 ### Added

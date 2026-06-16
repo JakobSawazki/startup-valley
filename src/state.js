@@ -88,8 +88,21 @@
     }
   };
 
+  const marketMeta = {
+    mainMarket: {
+      label: "Markt",
+      description: "Verkauft Rohstoffe gegen Startkapital.",
+      sellableResources: ["wood", "stone"],
+      sellPrices: {
+        wood: 2,
+        stone: 3
+      },
+      sellAmounts: [1, 5, 10, "all"]
+    }
+  };
+
   const initialState = {
-    version: "0.0.8",
+    version: "0.0.9",
     money: 0,
     resources: {
       wood: 0,
@@ -291,6 +304,80 @@
     };
   }
 
+  function getMarketSellPrice(resourceId) {
+    return marketMeta.mainMarket.sellPrices[resourceId] ?? 0;
+  }
+
+  function getSellQuantity(gameState, resourceId, requestedAmount) {
+    const available = getResourceAmount(gameState, resourceId);
+
+    if (requestedAmount === "all") {
+      return available;
+    }
+
+    return Number(requestedAmount);
+  }
+
+  function canSellResource(gameState, resourceId, requestedAmount) {
+    const available = getResourceAmount(gameState, resourceId);
+    const quantity = getSellQuantity(gameState, resourceId, requestedAmount);
+    const price = getMarketSellPrice(resourceId);
+
+    return price > 0 && Number.isFinite(quantity) && quantity > 0 && available >= quantity;
+  }
+
+  function sellResource(gameState, resourceId, requestedAmount) {
+    const meta = resourceMeta[resourceId];
+    const price = getMarketSellPrice(resourceId);
+    const available = getResourceAmount(gameState, resourceId);
+    const quantity = getSellQuantity(gameState, resourceId, requestedAmount);
+
+    if (!meta || price <= 0) {
+      gameState.message = "Diese Ressource kann hier nicht verkauft werden.";
+
+      return {
+        success: false,
+        message: gameState.message
+      };
+    }
+
+    if (!Number.isFinite(quantity) || quantity <= 0 || available <= 0) {
+      gameState.message = `Kein ${meta.label} zum Verkaufen vorhanden.`;
+
+      return {
+        success: false,
+        resourceId,
+        message: gameState.message
+      };
+    }
+
+    if (available < quantity) {
+      gameState.message = `Nicht genug ${meta.label}. Verfügbar: ${available}, benötigt: ${quantity}.`;
+
+      return {
+        success: false,
+        resourceId,
+        requestedAmount,
+        available,
+        message: gameState.message
+      };
+    }
+
+    const revenue = quantity * price;
+    subtractResource(gameState, resourceId, quantity);
+    addResource(gameState, "money", revenue);
+    gameState.message = `${quantity} ${meta.label} verkauft. +${revenue} EUR.`;
+
+    return {
+      success: true,
+      resourceId,
+      quantity,
+      price,
+      revenue,
+      message: gameState.message
+    };
+  }
+
   function ensureResourceNode(gameState, objectId, maxUses) {
     if (!gameState.resourceNodes[objectId]) {
       gameState.resourceNodes[objectId] = {
@@ -335,6 +422,7 @@
     resourceOrder,
     resourceMeta,
     buildingMeta,
+    marketMeta,
     getResourceAmount,
     getBuildingLevel,
     getHouseLevel,
@@ -348,6 +436,10 @@
     subtractResource,
     spendCost,
     upgradeBuilding,
+    getMarketSellPrice,
+    getSellQuantity,
+    canSellResource,
+    sellResource,
     ensureResourceNode,
     consumeResourceNode,
     getResourceNodeState,

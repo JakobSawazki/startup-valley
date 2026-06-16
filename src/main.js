@@ -22,7 +22,8 @@
 
     function renderObjectPanel(object, actionResult) {
       app.ui.renderObjectMessage(object, actionResult, gameState, {
-        onUpgradeBuilding: handleUpgradeBuilding
+        onUpgradeBuilding: handleUpgradeBuilding,
+        onSellResource: handleSellResource
       });
     }
 
@@ -38,6 +39,19 @@
       }
 
       return upgradeResult;
+    }
+
+    function handleSellResource(resourceId, amount) {
+      const sellResult = app.state.sellResource(gameState, resourceId, amount);
+      const marketObject = getWorldObjectById(gameState.selectedObjectId) || getWorldObjectById("market_01");
+
+      app.ui.renderHud(gameState);
+
+      if (marketObject) {
+        renderObjectPanel(marketObject, sellResult);
+      }
+
+      return sellResult;
     }
 
     function handleWorldObject(object) {

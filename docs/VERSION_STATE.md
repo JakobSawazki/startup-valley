@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.8-building-upgrades
+0.0.9-market
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD, erschöpfbaren Ressourcenquellen und funktionierendem Gebäudestufen-Ausbau.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD, erschöpfbaren Ressourcenquellen, Gebäudestufen-Ausbau und einem ersten Marktverkauf.
 
 Online erreichbar:
 
@@ -31,6 +31,7 @@ Implementiert:
 - zentraler `gameState` in `src/state.js`
 - Ressourcen-Metadaten für Geld, Holz, Stein und Metall
 - zentrale Gebäudestufen und Baukosten für das Hauptgebäude
+- zentrale Marktpreise und Verkaufsmengen
 - sichtbarer Spielbereich mit PNG-Hintergrund
 - klickbare Weltobjekte: 3 Bäume, 2 Steinhaufen, Schrott, Bauplatz, Markt
 - Baumklick erhöht Holz um 2
@@ -39,24 +40,29 @@ Implementiert:
 - Ressourcenquellen haben begrenzte Abbaupunkte, schrumpfen pro Klick und verschwinden bei 0
 - erschöpfte Ressourcenquellen sind deaktiviert und nicht weiter abbaubar
 - HUD/Inventar mit korrekten Startwerten 0 für Geld, Holz, Stein, Metall und Hausstufe
-- HUD aktualisiert sich sofort nach Sammelaktionen und Ausbauaktionen
+- HUD aktualisiert sich sofort nach Sammelaktionen, Ausbauaktionen und Marktverkäufen
 - Floating-Text zeigt den erhaltenen Ressourcenwert
 - Bauplatzpanel zeigt aktuelle Stufe, nächste Stufe und Anforderungen
 - Ausbau-Button ist ohne Ressourcen deaktiviert und bei erfüllten Anforderungen aktiv
 - Ausbau verbraucht die korrekten Ressourcen
 - Hauslevel steigt bis maximal Stufe 3
 - Hausgrafik, Objektlabel und HUD-Hausicon wechseln passend zur Gebäudestufe
+- Marktpanel zeigt Holz und Stein mit Bestand, Preis und Verkaufsbuttons
+- Holzverkauf: `2 EUR` pro Einheit
+- Steinverkauf: `3 EUR` pro Einheit
+- Verkaufsmengen: `1`, `5`, `10`, `Alles`
+- Verkauf erhöht Geld und senkt die verkaufte Ressource
+- Verkauf ist ohne Bestand oder bei zu hoher Menge deaktiviert
 - Favicon und Browser-Tab-Icon unter `assets/ui/favicon.png` und `favicon.ico`
 - realistischere transparente PNG-Sprites für Bäume, Steinhaufen und Schrott
 - hochwertige realistischere PNG-Icons für Geld, Holz, Stein und Metall
 - Hover-/Focus-Tooltips für Inventar und Weltobjekte
-- Kontextpanel mit Interaktionshinweisen und Ausbaufeedback
+- Kontextpanel mit Interaktionshinweisen, Ausbaufeedback und Marktfeedback
 - austauschbare PNG-Assets unter `assets/backgrounds/`, `assets/resources/`, `assets/buildings/` und `assets/ui/icons/`
 - `data/world_start.json` als vorbereitete Datenreferenz
 
 Noch nicht implementiert:
 
-- Marktlogik
 - Speichern/Laden
 
 Vorhandene Dokumentation:
@@ -105,7 +111,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-Gebäudeausbau funktioniert: Nach 5 Baumklicks und je 5 Klicks auf beide Steinhaufen stehen 10 Holz und 20 Stein bereit. Klick auf "Fundament bauen" zieht die Kosten ab, setzt Hausstufe auf 1 und wechselt die Grafik auf house_01_foundation.png. Die reine State-Logik wurde zusätzlich für alle drei Stufen bis zur Maximalstufe getestet.
+Marktverkauf funktioniert: Nach 5 Baumklicks stehen 10 Holz bereit. Im Marktpanel verkauft der Button "5" genau 5 Holz für 10 EUR. Danach zeigt das HUD Geld 10 EUR und Holz 5. Verkauf ohne Stein ist deaktiviert.
 ```
 
 ---
@@ -116,15 +122,15 @@ Gebäudeausbau funktioniert: Nach 5 Baumklicks und je 5 Klicks auf beide Steinha
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln, erschöpfbaren Ressourcenquellen und Gebäudeausbau.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln, erschöpfbaren Ressourcenquellen, Gebäudeausbau und Marktverkauf.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 - Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
-- Mit den aktuellen Weltressourcen ist Stufe 1 direkt erreichbar; für spätere Stufen braucht der Spieler nachfolgend Markt-/Wirtschaftslogik.
+- Wirtschaftsbalance ist noch provisorisch; Verkaufspreise sind bewusst einfach.
 
 ---
 
 ## Nächster Schritt
 
 ```text
-TASK-007 – Markt mit Verkauf einbauen
+TASK-008 – Lokales Speichern, Laden und Zurücksetzen
 ```

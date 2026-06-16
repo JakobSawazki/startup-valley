@@ -44,6 +44,10 @@
       .join("");
   }
 
+  function getAmountLabel(amount) {
+    return amount === "all" ? "Alles" : String(amount);
+  }
+
   function renderHud(gameState) {
     const resourceGrid = document.querySelector("#resource-grid");
     const appState = window.StartupValley.state;
@@ -232,6 +236,74 @@
     }
   }
 
+  function renderMarketPanel(object, actionResult, gameState, handlers) {
+    const title = document.querySelector("#context-title");
+    const messageLine = document.querySelector("#message-line");
+    const appState = window.StartupValley.state;
+    const market = appState.marketMeta.mainMarket;
+
+    if (!title || !messageLine) {
+      return;
+    }
+
+    const feedbackClass = actionResult?.success ? "context-kicker-success" : "context-kicker-depleted";
+    const feedback = actionResult?.message
+      ? `<span class="market-feedback ${feedbackClass}">${escapeHtml(actionResult.message)}</span>`
+      : "";
+
+    title.textContent = object.name;
+    messageLine.innerHTML = `
+      <section class="market-panel" aria-label="Markt">
+        <span class="context-kicker">Handel</span>
+        ${feedback}
+        <div class="market-summary">
+          <strong>${escapeHtml(market.label)}</strong>
+          <span>${escapeHtml(market.description)}</span>
+        </div>
+        <div class="market-list">
+          ${market.sellableResources.map((resourceId) => {
+            const meta = appState.resourceMeta[resourceId];
+            const available = appState.getResourceAmount(gameState, resourceId);
+            const price = appState.getMarketSellPrice(resourceId);
+
+            return `
+              <div class="market-row">
+                <span class="market-icon-frame">
+                  <img src="${escapeHtml(meta.icon)}" alt="" aria-hidden="true">
+                </span>
+                <span class="market-copy">
+                  <strong>${escapeHtml(meta.label)}</strong>
+                  <small>Bestand: ${escapeHtml(available)} · Preis: ${escapeHtml(price)} EUR</small>
+                </span>
+                <span class="market-actions" aria-label="${escapeHtml(`${meta.label} verkaufen`)}">
+                  ${market.sellAmounts.map((amount) => {
+                    const canSell = appState.canSellResource(gameState, resourceId, amount);
+                    return `<button class="market-sell-button" type="button" data-resource-id="${escapeHtml(resourceId)}" data-sell-amount="${escapeHtml(amount)}" ${canSell ? "" : "disabled"}>${escapeHtml(getAmountLabel(amount))}</button>`;
+                  }).join("")}
+                </span>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      </section>
+    `;
+
+    messageLine.querySelectorAll(".market-sell-button").forEach((button) => {
+      if (button.disabled) {
+        return;
+      }
+
+      button.addEventListener("click", () => {
+        if (!handlers?.onSellResource) {
+          return;
+        }
+
+        const amount = button.dataset.sellAmount === "all" ? "all" : Number(button.dataset.sellAmount);
+        handlers.onSellResource(button.dataset.resourceId, amount);
+      });
+    });
+  }
+
   function renderObjectMessage(object, actionResult, gameState, handlers) {
     const title = document.querySelector("#context-title");
     const messageLine = document.querySelector("#message-line");
@@ -244,6 +316,11 @@
 
     if (object.type === "building" && gameState) {
       renderBuildingPanel(object, gameState, actionResult, handlers);
+      return;
+    }
+
+    if (object.type === "market" && gameState) {
+      renderMarketPanel(object, actionResult, gameState, handlers);
       return;
     }
 
