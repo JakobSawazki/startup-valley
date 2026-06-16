@@ -132,6 +132,26 @@
     };
   }
 
+  function getBuildingVisualState(gameState, object) {
+    if (object.type !== "building") {
+      return null;
+    }
+
+    const buildingId = object.buildingId || "mainHouse";
+    const levelDefinition = window.StartupValley.state.getCurrentBuildingLevel(gameState, buildingId);
+
+    if (!levelDefinition) {
+      return null;
+    }
+
+    return {
+      levelDefinition,
+      image: levelDefinition.image || object.image,
+      label: levelDefinition.level > 0 ? levelDefinition.name : object.name,
+      tooltip: `${object.description} Aktuell: ${levelDefinition.name}, Stufe ${levelDefinition.level}.`
+    };
+  }
+
   function renderWorld(container, gameState, onSelectObject) {
     if (!container) {
       return;
@@ -153,6 +173,7 @@
       button.dataset.tooltip = object.description;
 
       const resourceVisualState = getResourceVisualState(gameState, object);
+      const buildingVisualState = getBuildingVisualState(gameState, object);
 
       if (resourceVisualState) {
         const { nodeState, scale, depleted } = resourceVisualState;
@@ -171,13 +192,22 @@
         }
       }
 
+      if (buildingVisualState) {
+        const { levelDefinition, label, tooltip } = buildingVisualState;
+
+        button.dataset.buildingLevel = String(levelDefinition.level);
+        button.setAttribute("aria-label", `${object.name}, Stufe ${levelDefinition.level}: ${levelDefinition.name}`);
+        button.title = `${object.name}: ${levelDefinition.name}`;
+        button.dataset.tooltip = tooltip;
+      }
+
       const image = document.createElement("img");
-      image.src = object.image;
+      image.src = buildingVisualState?.image || object.image;
       image.alt = "";
       image.setAttribute("aria-hidden", "true");
 
       const label = document.createElement("span");
-      label.textContent = object.name;
+      label.textContent = buildingVisualState?.label || object.name;
 
       button.append(image, label);
       button.addEventListener("click", () => onSelectObject(object));

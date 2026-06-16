@@ -67,14 +67,15 @@
     });
 
     const houseMeta = appState.buildingMeta.mainHouse;
+    const houseLevel = appState.getCurrentBuildingLevel(gameState, "mainHouse");
     const hudItems = [
       ...resourceItems,
       {
         id: "mainHouse",
         label: houseMeta.label,
-        shortLabel: houseMeta.shortLabel,
-        icon: houseMeta.icon,
-        description: houseMeta.description,
+        shortLabel: houseLevel ? houseLevel.name : houseMeta.shortLabel,
+        icon: houseLevel?.image || houseMeta.icon,
+        description: houseLevel ? `${houseMeta.description} Aktuell: ${houseLevel.name}.` : houseMeta.description,
         value: appState.getHouseLevel(gameState)
       }
     ];
@@ -144,7 +145,7 @@
     return "Geplante Aktion: Objekt auswählen.";
   }
 
-  function renderBuildingPanel(object, gameState) {
+  function renderBuildingPanel(object, gameState, actionResult, handlers) {
     const title = document.querySelector("#context-title");
     const messageLine = document.querySelector("#message-line");
     const appState = window.StartupValley.state;
@@ -156,6 +157,10 @@
     const buildingId = object.buildingId || "mainHouse";
     const currentLevel = appState.getCurrentBuildingLevel(gameState, buildingId);
     const nextLevel = appState.getNextBuildingLevel(gameState, buildingId);
+    const feedbackClass = actionResult?.success ? "context-kicker-success" : "context-kicker-depleted";
+    const feedback = actionResult?.message
+      ? `<span class="building-feedback ${feedbackClass}">${escapeHtml(actionResult.message)}</span>`
+      : "";
 
     title.textContent = object.name;
 
@@ -163,6 +168,7 @@
       messageLine.innerHTML = `
         <section class="building-panel" aria-label="Bauplatzstatus">
           <span class="context-kicker context-kicker-success">Voll ausgebaut</span>
+          ${feedback}
           <div class="building-summary">
             <strong>${escapeHtml(currentLevel.name)}</strong>
             <span>${escapeHtml(currentLevel.description)}</span>
@@ -183,6 +189,7 @@
     messageLine.innerHTML = `
       <section class="building-panel" aria-label="Bauplatzstatus">
         <span class="context-kicker">Bauprojekt</span>
+        ${feedback}
         <div class="building-summary">
           <strong>${escapeHtml(currentLevel.name)} · Stufe ${currentLevel.level}</strong>
           <span>${escapeHtml(currentLevel.description)}</span>
@@ -204,7 +211,7 @@
           </ul>
         </div>
         <div class="building-actions">
-          <button class="primary-action" id="build-upgrade-button" type="button" ${canUpgrade ? "" : "disabled"}>Ausbauen</button>
+          <button class="primary-action" id="build-upgrade-button" type="button" data-building-id="${escapeHtml(buildingId)}" ${canUpgrade ? "" : "disabled"}>${escapeHtml(nextLevel.name)} bauen</button>
           <span class="building-notice ${canUpgrade ? "is-ready" : "is-missing"}">${escapeHtml(missingText)}</span>
         </div>
       </section>
@@ -215,12 +222,17 @@
 
     if (upgradeButton && notice && canUpgrade) {
       upgradeButton.addEventListener("click", () => {
+        if (handlers?.onUpgradeBuilding) {
+          handlers.onUpgradeBuilding(buildingId);
+          return;
+        }
+
         notice.textContent = "Ausbau bereit.";
       });
     }
   }
 
-  function renderObjectMessage(object, actionResult, gameState) {
+  function renderObjectMessage(object, actionResult, gameState, handlers) {
     const title = document.querySelector("#context-title");
     const messageLine = document.querySelector("#message-line");
 
@@ -231,7 +243,7 @@
     title.textContent = object.name;
 
     if (object.type === "building" && gameState) {
-      renderBuildingPanel(object, gameState);
+      renderBuildingPanel(object, gameState, actionResult, handlers);
       return;
     }
 

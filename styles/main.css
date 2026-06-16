@@ -422,6 +422,29 @@ p {
   line-height: 1.35;
 }
 
+.building-feedback {
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 7px;
+  padding: 5px 9px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.building-feedback.context-kicker-success {
+  border-color: rgba(124, 207, 138, 0.48);
+  color: #dfffe4;
+  background: rgba(124, 207, 138, 0.12);
+}
+
+.building-feedback.context-kicker-depleted {
+  border-color: rgba(248, 113, 113, 0.5);
+  color: #ffd9d9;
+  background: rgba(248, 113, 113, 0.12);
+}
+
 .building-stage-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

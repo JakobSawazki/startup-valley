@@ -10,6 +10,36 @@
       app.world.renderWorld(world, gameState, handleWorldObject);
     }
 
+    function getWorldObjectById(objectId) {
+      return app.world.worldObjects.find((worldObject) => worldObject.id === objectId) || null;
+    }
+
+    function getBuildingObject(buildingId) {
+      return app.world.worldObjects.find((worldObject) => {
+        return worldObject.type === "building" && (worldObject.buildingId || "mainHouse") === buildingId;
+      }) || null;
+    }
+
+    function renderObjectPanel(object, actionResult) {
+      app.ui.renderObjectMessage(object, actionResult, gameState, {
+        onUpgradeBuilding: handleUpgradeBuilding
+      });
+    }
+
+    function handleUpgradeBuilding(buildingId) {
+      const upgradeResult = app.state.upgradeBuilding(gameState, buildingId);
+      const buildingObject = getBuildingObject(buildingId);
+
+      app.ui.renderHud(gameState);
+      renderWorld();
+
+      if (buildingObject) {
+        renderObjectPanel(buildingObject, upgradeResult);
+      }
+
+      return upgradeResult;
+    }
+
     function handleWorldObject(object) {
       app.state.selectObject(gameState, object.id);
       let actionResult = null;
@@ -27,7 +57,7 @@
       }
 
       console.log(`Startup Valley Objekt gewählt: ${object.name} (${object.id})`);
-      app.ui.renderObjectMessage(object, actionResult, gameState);
+      renderObjectPanel(getWorldObjectById(object.id) || object, actionResult);
     }
 
     app.ui.renderHud(gameState);

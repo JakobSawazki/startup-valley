@@ -155,7 +155,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-006 – Gebäudestufen und Ressourcenverbrauch umsetzen
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Haus kann in sichtbaren Stufen ausgebaut werden.
 
 **Vorgeschlagene Baukosten:**

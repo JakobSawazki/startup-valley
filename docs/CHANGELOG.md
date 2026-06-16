@@ -14,6 +14,32 @@ Format:
 
 ---
 
+## [0.0.8-building-upgrades] – 2026-06-16
+
+### Added
+
+- Echte Gebäudestufen-Ausbaulogik ergänzt.
+- `upgradeBuilding()` in `src/state.js` ergänzt, inklusive Ressourcenprüfung, Kostenabzug und Maximalstufen-Schutz.
+- Bauplatz-Button führt jetzt den Ausbau aus, sobald genügend Ressourcen vorhanden sind.
+- Hausgrafik, Objektlabel und HUD-Hausicon wechseln passend zur aktuellen Gebäudestufe.
+- Erfolgs- und Fehlermeldungen für Ausbauaktionen im Bauplatzpanel ergänzt.
+
+### Changed
+
+- CSS/JS-Cache-Version auf `0.0.8` aktualisiert.
+- Bauplatzpanel zeigt nach einem erfolgreichen Ausbau direkt die nächste mögliche Stufe und deren Anforderungen.
+- `getNextBuildingLevel()` gibt nach der letzten Gebäudestufe korrekt `null` zurück.
+
+### Fixed
+
+- Verhindert, dass nach der Maximalstufe wieder die Bauplatz-Stufe als nächste Stufe erscheint.
+- Ausbau kann Ressourcen nicht unter 0 senken.
+
+### Docs
+
+- `TASK-006` abgeschlossen und nächsten Schritt auf `TASK-007` aktualisiert.
+- README, `docs/VERSION_STATE.md` und `docs/HANDOFF.md` auf den Gebäudestufen-Ausbau aktualisiert.
+
 ## [0.0.7-build-panel] – 2026-06-16
 
 ### Added

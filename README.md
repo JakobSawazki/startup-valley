@@ -18,7 +18,7 @@ Das Spiel soll bewusst mit einer kleinen Welt starten. Die Interaktion erfolgt p
 
 ## 2. Aktueller Versionsstand
 
-Aktuelle Version: `0.0.7-build-panel`
+Aktuelle Version: `0.0.8-building-upgrades`
 
 Live-Version:
 
@@ -34,6 +34,8 @@ Aktuell umgesetzt:
 - manuelles Sammeln: Baum `+2 Holz`, Stein `+2 Stein`, Schrott `+1 Metall`
 - Ressourcenquellen werden pro Klick kleiner, erschöpfen sich und verschwinden
 - Bauplatzpanel mit aktueller Stufe, nächster Stufe, Anforderungen und aktivem/deaktiviertem Ausbau-Button
+- Gebäudestufen können ausgebaut werden, wenn die Ressourcen reichen
+- Ausbau verbraucht die korrekten Ressourcen und aktualisiert HUD, Panel und Hausgrafik
 - hochwertiges Favicon / Tab-Icon
 - realistischere transparente PNG-Sprites für Bäume, Steinhaufen und Schrott
 - hochwertige transparente PNG-Icons für Ressourcen
@@ -43,7 +45,6 @@ Aktuell umgesetzt:
 
 Noch offen für Version 0.1.0:
 
-- Gebäudestufen ausbauen und Ressourcen dabei verbrauchen
 - Marktverkauf
 - Speichern, Laden und Reset über `localStorage`
 
@@ -110,6 +111,7 @@ Aktuelle Richtung:
 
 | Version | Datum | Stand |
 |---|---|---|
+| `0.0.8-building-upgrades` | 2026-06-16 | Echte Gebäudestufen-Ausbaulogik mit Kostenabzug, HUD-Update und Grafikwechsel ergänzt |
 | `0.0.7-build-panel` | 2026-06-16 | Bauplatzpanel mit Anforderungen und aktivem/deaktiviertem Ausbau-Button ergänzt; Ressourcen-Sprites realistischer ersetzt |
 | `0.0.6-depletion` | 2026-06-16 | Favicon ergänzt und Ressourcenquellen schrumpfen/verschwinden nach begrenzten Klicks |
 | `0.0.5-collection` | 2026-06-16 | Manuelles Ressourcensammeln, HUD-Aktualisierung und Floating-Feedback ergänzt |

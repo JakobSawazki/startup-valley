@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.7-build-panel
+0.0.8-building-upgrades
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD, erschöpfbaren Ressourcenquellen und einem ersten Bauplatzpanel.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD, erschöpfbaren Ressourcenquellen und funktionierendem Gebäudestufen-Ausbau.
 
 Online erreichbar:
 
@@ -39,21 +39,23 @@ Implementiert:
 - Ressourcenquellen haben begrenzte Abbaupunkte, schrumpfen pro Klick und verschwinden bei 0
 - erschöpfte Ressourcenquellen sind deaktiviert und nicht weiter abbaubar
 - HUD/Inventar mit korrekten Startwerten 0 für Geld, Holz, Stein, Metall und Hausstufe
-- HUD aktualisiert sich sofort nach Sammelaktionen
+- HUD aktualisiert sich sofort nach Sammelaktionen und Ausbauaktionen
 - Floating-Text zeigt den erhaltenen Ressourcenwert
 - Bauplatzpanel zeigt aktuelle Stufe, nächste Stufe und Anforderungen
 - Ausbau-Button ist ohne Ressourcen deaktiviert und bei erfüllten Anforderungen aktiv
+- Ausbau verbraucht die korrekten Ressourcen
+- Hauslevel steigt bis maximal Stufe 3
+- Hausgrafik, Objektlabel und HUD-Hausicon wechseln passend zur Gebäudestufe
 - Favicon und Browser-Tab-Icon unter `assets/ui/favicon.png` und `favicon.ico`
 - realistischere transparente PNG-Sprites für Bäume, Steinhaufen und Schrott
 - hochwertige realistischere PNG-Icons für Geld, Holz, Stein und Metall
 - Hover-/Focus-Tooltips für Inventar und Weltobjekte
-- Kontextpanel mit vorbereiteten Interaktionshinweisen
+- Kontextpanel mit Interaktionshinweisen und Ausbaufeedback
 - austauschbare PNG-Assets unter `assets/backgrounds/`, `assets/resources/`, `assets/buildings/` und `assets/ui/icons/`
 - `data/world_start.json` als vorbereitete Datenreferenz
 
 Noch nicht implementiert:
 
-- Ressourcenverbrauch und sichtbarer Stufenwechsel beim Gebäudebau
 - Marktlogik
 - Speichern/Laden
 
@@ -103,7 +105,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-Bauplatzpanel funktioniert: Ohne Ressourcen ist der Button deaktiviert. Nach 5 Baumklicks und je 5 Klicks auf beide Steinhaufen stehen 10 Holz und 20 Stein bereit; das Panel zeigt beide Anforderungen als erfüllt und der Ausbau-Button ist aktiv.
+Gebäudeausbau funktioniert: Nach 5 Baumklicks und je 5 Klicks auf beide Steinhaufen stehen 10 Holz und 20 Stein bereit. Klick auf "Fundament bauen" zieht die Kosten ab, setzt Hausstufe auf 1 und wechselt die Grafik auf house_01_foundation.png. Die reine State-Logik wurde zusätzlich für alle drei Stufen bis zur Maximalstufe getestet.
 ```
 
 ---
@@ -114,15 +116,15 @@ Bauplatzpanel funktioniert: Ohne Ressourcen ist der Button deaktiviert. Nach 5 B
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln, erschöpfbaren Ressourcenquellen und Bauplatzpanel.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln, erschöpfbaren Ressourcenquellen und Gebäudeausbau.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 - Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
-- Der Ausbau-Button führt noch keinen Ressourcenverbrauch aus; das ist bewusst Aufgabe von `TASK-006`.
+- Mit den aktuellen Weltressourcen ist Stufe 1 direkt erreichbar; für spätere Stufen braucht der Spieler nachfolgend Markt-/Wirtschaftslogik.
 
 ---
 
 ## Nächster Schritt
 
 ```text
-TASK-006 – Gebäudestufen und Ressourcenverbrauch umsetzen
+TASK-007 – Markt mit Verkauf einbauen
 ```

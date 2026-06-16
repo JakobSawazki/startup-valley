@@ -89,7 +89,7 @@
   };
 
   const initialState = {
-    version: "0.0.7",
+    version: "0.0.8",
     money: 0,
     resources: {
       wood: 0,
@@ -132,11 +132,12 @@
 
   function getBuildingLevelDefinition(buildingId, level) {
     const levels = buildingMeta[buildingId]?.levels || [];
-    return levels.find((definition) => definition.level === level) || levels[0] || null;
+    return levels.find((definition) => definition.level === level) || null;
   }
 
   function getCurrentBuildingLevel(gameState, buildingId) {
-    return getBuildingLevelDefinition(buildingId, getBuildingLevel(gameState, buildingId));
+    const levels = buildingMeta[buildingId]?.levels || [];
+    return getBuildingLevelDefinition(buildingId, getBuildingLevel(gameState, buildingId)) || levels[0] || null;
   }
 
   function getNextBuildingLevel(gameState, buildingId) {
@@ -193,6 +194,103 @@
     return gameState.resources[resourceId];
   }
 
+  function subtractResource(gameState, resourceId, amount) {
+    if (!Number.isFinite(amount) || amount <= 0) {
+      return getResourceAmount(gameState, resourceId);
+    }
+
+    if (resourceId === "money") {
+      gameState.money = Math.max(0, gameState.money - amount);
+      return gameState.money;
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(gameState.resources, resourceId)) {
+      return 0;
+    }
+
+    gameState.resources[resourceId] = Math.max(0, gameState.resources[resourceId] - amount);
+    return gameState.resources[resourceId];
+  }
+
+  function formatCostText(entries, amountKey) {
+    return entries
+      .map((entry) => {
+        const meta = resourceMeta[entry.resourceId];
+        const amount = entry[amountKey] ?? entry.amount;
+        return `${amount}${meta.unit ? ` ${meta.unit}` : ""} ${meta.label}`;
+      })
+      .join(", ");
+  }
+
+  function spendCost(gameState, cost) {
+    const missing = getMissingCost(gameState, cost);
+
+    if (missing.length > 0) {
+      return {
+        success: false,
+        missing
+      };
+    }
+
+    const spent = getCostEntries(cost);
+    spent.forEach((entry) => subtractResource(gameState, entry.resourceId, entry.amount));
+
+    return {
+      success: true,
+      spent
+    };
+  }
+
+  function upgradeBuilding(gameState, buildingId) {
+    const currentLevel = getCurrentBuildingLevel(gameState, buildingId);
+    const nextLevel = getNextBuildingLevel(gameState, buildingId);
+
+    if (!nextLevel) {
+      gameState.message = `${currentLevel.name} ist bereits voll ausgebaut.`;
+
+      return {
+        success: false,
+        maxLevel: true,
+        buildingId,
+        currentLevel,
+        message: gameState.message
+      };
+    }
+
+    const payment = spendCost(gameState, nextLevel.cost);
+
+    if (!payment.success) {
+      gameState.message = `Ausbau nicht möglich. Fehlt: ${formatCostText(payment.missing, "missing")}.`;
+
+      return {
+        success: false,
+        missing: payment.missing,
+        buildingId,
+        currentLevel,
+        nextLevel,
+        message: gameState.message
+      };
+    }
+
+    if (!gameState.buildings[buildingId]) {
+      gameState.buildings[buildingId] = {
+        level: 0
+      };
+    }
+
+    gameState.buildings[buildingId].level = nextLevel.level;
+    gameState.message = `${nextLevel.name} gebaut. Verbrauch: ${formatCostText(payment.spent, "amount")}.`;
+
+    return {
+      success: true,
+      buildingId,
+      previousLevel: currentLevel,
+      currentLevel: nextLevel,
+      spent: payment.spent,
+      message: gameState.message
+    };
+  }
+
   function ensureResourceNode(gameState, objectId, maxUses) {
     if (!gameState.resourceNodes[objectId]) {
       gameState.resourceNodes[objectId] = {
@@ -247,6 +345,9 @@
     getMissingCost,
     canAffordCost,
     addResource,
+    subtractResource,
+    spendCost,
+    upgradeBuilding,
     ensureResourceNode,
     consumeResourceNode,
     getResourceNodeState,
