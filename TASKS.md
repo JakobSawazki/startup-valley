@@ -15,7 +15,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-001 – Projektstruktur initialisieren
 
-**Status:** DONE  
+**Status:** DONE
 **Ziel:** Eine saubere Grundstruktur für das Webspiel anlegen.
 
 **Umfang:**
@@ -251,8 +251,10 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-009 – GitHub-Pages-Deployment vorbereiten
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Projekt wird für automatisches GitHub Pages Deployment vorbereitet.
+
+**Hinweis:** Auf ausdrücklichen Nutzerwunsch am 2026-06-16 vorgezogen erledigt, obwohl `TASK-002` noch offen ist.
 
 **Umfang:**
 

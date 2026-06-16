@@ -14,6 +14,12 @@ Das Projekt soll in einem GitHub-Repository liegen, damit:
 - GitHub Pages das Spiel automatisch online bereitstellt
 - ein sauberer Agent-Handshake möglich ist
 
+Aktueller Stand vom 2026-06-16:
+
+- Repository: `https://github.com/JakobSawazki/startup-valley`
+- GitHub Pages: `https://jakobsawazki.github.io/startup-valley/`
+- Deployment-Quelle: GitHub Actions / `.github/workflows/deploy.yml`
+
 ---
 
 ## 2. Empfohlener Repository-Name

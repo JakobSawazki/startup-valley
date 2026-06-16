@@ -14,6 +14,27 @@ Format:
 
 ---
 
+## [0.0.2-online] – 2026-06-16
+
+### Added
+
+- Öffentliches GitHub-Repository `JakobSawazki/startup-valley` erstellt.
+- GitHub Pages im Workflow-Modus aktiviert.
+- Live-Seite unter `https://jakobsawazki.github.io/startup-valley/` veröffentlicht.
+
+### Changed
+
+- GitHub-Pages-Workflow mit `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` vorbereitet.
+- README und Übergabedokumentation um Repository- und Pages-URL ergänzt.
+
+### Fixed
+
+- Keine Spielfehler behoben.
+
+### Docs
+
+- Vorgezogenes Deployment in `TASKS.md`, `docs/VERSION_STATE.md`, `docs/HANDOFF.md` und `docs/GITHUB_DEPLOYMENT.md` dokumentiert.
+
 ## [0.0.1] – 2026-06-16
 
 ### Added

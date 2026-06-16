@@ -5,7 +5,7 @@
 ## Aktuelle Version
 
 ```text
-0.0.1
+0.0.2-online
 ```
 
 ---
@@ -13,6 +13,11 @@
 ## Aktueller Zustand
 
 Das Projekt besitzt eine erste lauffähige Browser-Grundstruktur.
+
+Online erreichbar:
+
+- Repository: `https://github.com/JakobSawazki/startup-valley`
+- GitHub Pages: `https://jakobsawazki.github.io/startup-valley/`
 
 Implementiert:
 
@@ -77,7 +82,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-TASK-001 abgeschlossen: index.html rendert Startup Valley mit HUD und Spielbereich. JavaScript und CSS werden über relative Pfade geladen.
+TASK-001 abgeschlossen und über GitHub Pages veröffentlicht. index.html rendert Startup Valley mit HUD und Spielbereich. JavaScript und CSS werden über relative Pfade geladen.
 ```
 
 ---
@@ -88,7 +93,8 @@ TASK-001 abgeschlossen: index.html rendert Startup Valley mit HUD und Spielberei
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Im Projektordner existiert aktuell noch kein Git-Repository; GitHub-Remote und Pages-URL sind noch offen.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die Grundstruktur aus TASK-001.
+- GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 
 ---
 

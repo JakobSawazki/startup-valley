@@ -2,7 +2,7 @@
 
 **Projektstatus:** Konzept- und Codex-Startpaket  
 **Zielplattform:** Browser / HTML / CSS / JavaScript  
-**Deployment-Ziel:** GitHub Repository + GitHub Pages  
+**Deployment:** [GitHub Pages](https://jakobsawazki.github.io/startup-valley/)
 **Arbeitstitel:** Startup Valley  
 **Codex-Priorität:** Kleine, stabile, spielbare Vertikalversion statt sofort riesiger Featureumfang
 

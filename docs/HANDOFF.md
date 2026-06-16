@@ -7,16 +7,18 @@ Diese Datei muss nach jedem abgeschlossenen Arbeitsschritt aktualisiert werden.
 ## 1. Aktueller Stand
 
 **Projekt:** Startup Valley  
-**Version:** 0.0.1 Grundstruktur  
-**Deployment:** vorbereitet, aber noch nicht durchgeführt  
-**Repository:** noch einzurichten  
-**GitHub Pages URL:** noch offen
+**Version:** 0.0.2-online
+**Deployment:** erfolgreich über GitHub Pages
+**Repository:** https://github.com/JakobSawazki/startup-valley
+**GitHub Pages URL:** https://jakobsawazki.github.io/startup-valley/
 
 Letzter bestätigter Test:
 
 - JS-Syntaxcheck mit gebündelter Node-Laufzeit erfolgreich.
 - Browser-Smoke-Test über temporären lokalen Static-Server `http://127.0.0.1:8765/` erfolgreich.
 - Geprüft: Titel `Startup Valley`, sichtbares HUD, sichtbare Spielwelt, CSS geladen, keine Browser-Fehler/Warnungen.
+- Live-Smoke-Test auf GitHub Pages erfolgreich: Titel, HUD, Spielwelt, CSS und JS korrekt geladen, keine Browser-Fehler/Warnungen.
+- Erfolgreiche GitHub-Actions-Läufe: `27638777888` (Push), `27638791425` (manuell).
 
 ---
 
@@ -53,6 +55,7 @@ Geänderte Dateien in TASK-001:
 - `assets/ui/icons/.gitkeep`
 - `data/.gitkeep`
 - mehrere Dokumentationsdateien für Projektname, Version, Handoff und Deployment-Hinweise
+- `.github/workflows/deploy.yml` für GitHub Pages mit Node-24-Opt-in
 
 ---
 
@@ -114,19 +117,19 @@ Wenn das Repository angelegt wurde:
 ### Repository-URL
 
 ```text
-Noch offen
+https://github.com/JakobSawazki/startup-valley
 ```
 
 ### GitHub Pages URL
 
 ```text
-Noch offen
+https://jakobsawazki.github.io/startup-valley/
 ```
 
 ### Letzter bestätigter Commit
 
 ```text
-Noch offen, weil im Projektordner aktuell noch kein Git-Repository existiert.
+fc13842 – chore: initialize Startup Valley project
 ```
 
 ---
@@ -136,7 +139,7 @@ Noch offen, weil im Projektordner aktuell noch kein Git-Repository existiert.
 - finaler Projektname: aktuell `Startup Valley`
 - Grafikstil: moderne 2D-/Top-Down-/leicht isometrische Richtung
 - Repositoryname: Empfehlung `startup-valley`
-- öffentliches oder privates Repository: Empfehlung zunächst öffentlich für einfaches Pages-Deployment
+- Repository ist öffentlich für einfaches Pages-Deployment
 
 ---
 
@@ -148,6 +151,5 @@ Nach jeder Arbeit:
 - CHANGELOG aktualisieren
 - VERSION_STATE aktualisieren
 - HANDOFF aktualisieren
-- Git-Repository einrichten oder bestehenden Remote dokumentieren, sobald vorhanden
-- Git committen und pushen, sobald ein Repository eingerichtet ist
+- Git committen und pushen
 - bei Deployment-relevanten Änderungen GitHub Pages prüfen
