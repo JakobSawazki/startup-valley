@@ -129,7 +129,7 @@ https://jakobsawazki.github.io/startup-valley/
 ### Letzter bestätigter Commit
 
 ```text
-fc13842 – chore: initialize Startup Valley project
+Aktuellen Stand mit `git log -1 --oneline` prüfen. Der erste erfolgreich deployte Basisstand war fc13842.
 ```
 
 ---
