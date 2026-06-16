@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.4-hud
+0.0.5-collection
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand und aufgewertetem Inventar/HUD.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD und erstem Ressourcen-Sammelloop.
 
 Online erreichbar:
 
@@ -29,9 +29,15 @@ Implementiert:
 - `src/world.js`
 - zentraler `gameState` in `src/state.js`
 - Ressourcen-Metadaten für Geld, Holz, Stein und Metall
+- `src/resources.js` mit manueller Sammellogik
 - sichtbarer Spielbereich mit PNG-Hintergrund
 - klickbare Weltobjekte: 3 Bäume, 2 Steinhaufen, Schrott, Bauplatz, Markt
+- Baumklick erhöht Holz um 2
+- Steinklick erhöht Stein um 2
+- Schrottklick erhöht Metall um 1
 - HUD/Inventar mit korrekten Startwerten 0 für Geld, Holz, Stein, Metall und Hausstufe
+- HUD aktualisiert sich sofort nach Sammelaktionen
+- Floating-Text zeigt den erhaltenen Ressourcenwert
 - hochwertige realistischere PNG-Icons für Geld, Holz, Stein und Metall
 - Hover-/Focus-Tooltips für Inventar und Weltobjekte
 - Kontextpanel mit vorbereiteten Interaktionshinweisen
@@ -40,7 +46,6 @@ Implementiert:
 
 Noch nicht implementiert:
 
-- Ressourcenlogik: Klicks wählen aktuell nur Objekte aus; Sammeln startet in TASK-004
 - Bauplatzlogik
 - Marktlogik
 - Speichern/Laden
@@ -89,7 +94,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-TASK-003 abgeschlossen: Inventar/HUD rendert Geld, Holz, Stein, Metall und Hausstufe aus zentralem gameState mit Startwert 0. Objektklicks aktualisieren das Kontextpanel, verändern aber noch keine Ressourcen.
+TASK-004 abgeschlossen: Ressourcenquellen erhöhen den zentralen gameState und aktualisieren das Inventar sofort. 5 Baumklicks ergeben Holz 10, 3 Steinklicks ergeben Stein 6.
 ```
 
 ---
@@ -100,7 +105,7 @@ TASK-003 abgeschlossen: Inventar/HUD rendert Geld, Holz, Stein, Metall und Hauss
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die statische Startwelt mit Inventar aus TASK-003.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar und manuellem Sammeln aus TASK-004.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 - Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
 
@@ -109,5 +114,5 @@ TASK-003 abgeschlossen: Inventar/HUD rendert Geld, Holz, Stein, Metall und Hauss
 ## Nächster Schritt
 
 ```text
-TASK-004 – Manuelles Ressourcensammeln implementieren
+TASK-005 – Bauplatz auswählen und Aktionspanel anzeigen
 ```

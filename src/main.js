@@ -10,10 +10,18 @@
     app.ui.renderStatus(gameState.message);
     app.world.renderWorld(world, (object) => {
       app.state.selectObject(gameState, object.id);
-      gameState.message = object.description;
+      let actionResult = null;
+
+      if (object.type === "resource_node") {
+        actionResult = app.resources.collectResourceNode(gameState, object);
+        app.ui.renderHud(gameState);
+        app.ui.showFloatingText(world, object, actionResult.gainText);
+      } else {
+        gameState.message = object.description;
+      }
 
       console.log(`Startup Valley Objekt gewählt: ${object.name} (${object.id})`);
-      app.ui.renderObjectMessage(object);
+      app.ui.renderObjectMessage(object, actionResult);
     });
   }
 

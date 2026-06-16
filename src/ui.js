@@ -114,7 +114,7 @@
     return "Geplante Aktion: Objekt auswählen.";
   }
 
-  function renderObjectMessage(object) {
+  function renderObjectMessage(object, actionResult) {
     const title = document.querySelector("#context-title");
     const messageLine = document.querySelector("#message-line");
 
@@ -123,6 +123,16 @@
     }
 
     title.textContent = object.name;
+
+    if (actionResult && actionResult.success) {
+      messageLine.innerHTML = `
+        <span class="context-kicker context-kicker-success">Aktion ausgeführt</span>
+        <span class="context-description">${escapeHtml(object.description)}</span>
+        <span class="context-action">${escapeHtml(actionResult.message)}</span>
+      `;
+      return;
+    }
+
     messageLine.innerHTML = `
       <span class="context-kicker">${escapeHtml(getObjectKicker(object))}</span>
       <span class="context-description">${escapeHtml(object.description)}</span>
@@ -130,10 +140,29 @@
     `;
   }
 
+  function showFloatingText(container, object, text) {
+    if (!container) {
+      return;
+    }
+
+    const floatingText = document.createElement("span");
+    floatingText.className = "floating-gain";
+    floatingText.textContent = text;
+    floatingText.style.left = `${object.x + object.width / 2}%`;
+    floatingText.style.top = `${Math.max(4, object.y - 3)}%`;
+
+    container.append(floatingText);
+
+    window.setTimeout(() => {
+      floatingText.remove();
+    }, 900);
+  }
+
   window.StartupValley = window.StartupValley || {};
   window.StartupValley.ui = {
     renderHud,
     renderStatus,
-    renderObjectMessage
+    renderObjectMessage,
+    showFloatingText
   };
 })();

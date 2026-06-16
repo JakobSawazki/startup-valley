@@ -14,6 +14,31 @@ Format:
 
 ---
 
+## [0.0.5-collection] – 2026-06-16
+
+### Added
+
+- `src/resources.js` für manuelle Ressourcen-Sammellogik ergänzt.
+- Baumklick erhöht Holz um 2.
+- Steinklick erhöht Stein um 2.
+- Schrottklick erhöht Metall um 1.
+- Floating-Text zeigt den erhaltenen Ressourcenwert über dem angeklickten Objekt.
+
+### Changed
+
+- Objektklicks auf Ressourcenquellen aktualisieren jetzt sofort `gameState` und HUD.
+- Kontextpanel unterscheidet zwischen geplanter Aktion und ausgeführter Sammelaktion.
+- Versionsstand auf `0.0.5-collection` aktualisiert.
+
+### Fixed
+
+- Ressourcenwerte bleiben beim Sammeln nicht negativ und werden zentral über State-Funktionen geändert.
+
+### Docs
+
+- `TASK-004` abgeschlossen und nächsten Schritt auf `TASK-005` aktualisiert.
+- README, `docs/VERSION_STATE.md` und `docs/HANDOFF.md` auf den Sammel-Loop aktualisiert.
+
 ## [0.0.4-hud] – 2026-06-16
 
 ### Added

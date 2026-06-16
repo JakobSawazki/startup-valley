@@ -44,7 +44,7 @@
   };
 
   const initialState = {
-    version: "0.0.4",
+    version: "0.0.5",
     money: 0,
     resources: {
       wood: 0,
@@ -80,6 +80,24 @@
     return gameState.buildings.mainHouse.level;
   }
 
+  function addResource(gameState, resourceId, amount) {
+    if (!Number.isFinite(amount) || amount <= 0) {
+      return 0;
+    }
+
+    if (resourceId === "money") {
+      gameState.money += amount;
+      return gameState.money;
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(gameState.resources, resourceId)) {
+      return 0;
+    }
+
+    gameState.resources[resourceId] = Math.max(0, gameState.resources[resourceId] + amount);
+    return gameState.resources[resourceId];
+  }
+
   function selectObject(gameState, objectId) {
     gameState.selectedObjectId = objectId;
   }
@@ -93,6 +111,7 @@
     buildingMeta,
     getResourceAmount,
     getHouseLevel,
+    addResource,
     selectObject
   };
 })();

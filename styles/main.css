@@ -370,12 +370,51 @@ p {
   font-weight: 700;
 }
 
+.context-kicker-success {
+  border-color: rgba(124, 207, 138, 0.48);
+  color: #dfffe4;
+  background: rgba(124, 207, 138, 0.12);
+}
+
 .context-description {
   color: var(--text);
 }
 
 .context-action {
   color: #f6d99d;
+}
+
+.floating-gain {
+  position: absolute;
+  z-index: 20;
+  min-width: max-content;
+  border: 1px solid rgba(124, 207, 138, 0.5);
+  border-radius: 7px;
+  padding: 5px 9px;
+  color: #ecfff0;
+  background: rgba(8, 18, 12, 0.82);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  font-size: 0.82rem;
+  font-weight: 800;
+  pointer-events: none;
+  transform: translate(-50%, 0);
+  animation: float-gain 900ms ease-out forwards;
+}
+
+@keyframes float-gain {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 8px) scale(0.92);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -34px) scale(1.05);
+  }
 }
 
 @media (max-width: 820px) {

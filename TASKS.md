@@ -103,7 +103,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-004 – Manuelles Ressourcensammeln implementieren
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Spieler kann durch Klick Ressourcen sammeln.
 
 **Umfang:**

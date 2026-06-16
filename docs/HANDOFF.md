@@ -7,7 +7,7 @@ Diese Datei muss nach jedem abgeschlossenen Arbeitsschritt aktualisiert werden.
 ## 1. Aktueller Stand
 
 **Projekt:** Startup Valley  
-**Version:** 0.0.4-hud
+**Version:** 0.0.5-collection
 **Deployment:** erfolgreich über GitHub Pages
 **Repository:** https://github.com/JakobSawazki/startup-valley
 **GitHub Pages URL:** https://jakobsawazki.github.io/startup-valley/
@@ -21,22 +21,26 @@ Letzter bestätigter Test:
 - Erfolgreiche GitHub-Actions-Läufe: `27638777888` (Push), `27638791425` (manuell).
 - TASK-002 lokaler Browser-Test erfolgreich: 8 Weltobjekte gerendert und angeklickt, Kontextpanel aktualisiert, keine Browser-Fehler/Warnungen.
 - TASK-003 lokaler Browser-Test erfolgreich: Inventar zeigt Geld, Holz, Stein, Metall und Hausstufe jeweils mit Startwert 0, Tooltips sind gesetzt, Objektklicks zeigen vorbereitete Aktionen, keine Browser-Fehler/Warnungen.
+- TASK-004 lokaler Browser-Test erfolgreich: 5 Baumklicks ergeben Holz 10, 3 Steinklicks ergeben Stein 6, Schrottklick ergibt Metall 1, Floating-Text verschwindet wieder, keine Browser-Fehler/Warnungen.
 
 ---
 
 ## 2. Was existiert aktuell?
 
-Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie eine lauffähige HTML/CSS/JS-Grundstruktur mit grafischer PNG-Startwelt und aufgewertetem Inventar/HUD.
+Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie eine lauffähige HTML/CSS/JS-Grundstruktur mit grafischer PNG-Startwelt, aufgewertetem Inventar/HUD und manuellem Ressourcen-Sammeln.
 
 Enthalten:
 
 - `index.html` mit sichtbarem Spielbereich und HUD
 - `styles/main.css`
 - `src/main.js`, `src/state.js`, `src/ui.js`, `src/world.js`
+- `src/resources.js`
 - PNG-Hintergrund `assets/backgrounds/start_area.png`
 - transparente PNG-Objekte in `assets/resources/` und `assets/buildings/`
 - realistischere transparente PNG-Icons in `assets/ui/icons/`
 - zentraler `gameState` mit Startwerten für Geld, Holz, Stein, Metall und Hausstufe
+- manuelles Sammeln: Baum `+2 Holz`, Stein `+2 Stein`, Schrott `+1 Metall`
+- Floating-Feedback nach Sammelaktionen
 - Inventar-Tooltips und Kontextpanel für Objektinteraktionen
 - `data/world_start.json`
 - Projektbeschreibung
@@ -95,6 +99,20 @@ Geänderte Dateien in TASK-003:
 - `docs/HANDOFF.md`
 - `TASKS.md`
 
+Geänderte Dateien in TASK-004:
+
+- `index.html`
+- `styles/main.css`
+- `src/main.js`
+- `src/state.js`
+- `src/ui.js`
+- `src/resources.js`
+- `README.md`
+- `docs/CHANGELOG.md`
+- `docs/VERSION_STATE.md`
+- `docs/HANDOFF.md`
+- `TASKS.md`
+
 ---
 
 ## 3. Nächster notwendiger Schritt
@@ -102,7 +120,7 @@ Geänderte Dateien in TASK-003:
 Der nächste Codex-Agent soll in `TASKS.md` die erste offene Aufgabe bearbeiten:
 
 ```text
-TASK-004 – Manuelles Ressourcensammeln implementieren
+TASK-005 – Bauplatz auswählen und Aktionspanel anzeigen
 ```
 
 ---
@@ -131,16 +149,17 @@ Du arbeitest am Projekt "Startup Valley", einer browserbasierten klickbaren Wirt
 
 ---
 
-## 6. Testanleitung nach TASK-003
+## 6. Testanleitung nach TASK-004
 
-Nach dem Inventar/HUD:
+Nach dem Sammel-Loop:
 
 1. `index.html` lokal im Browser öffnen.
 2. Prüfen, ob Inventar links Geld, Holz, Stein, Metall und Hausstufe mit Wert 0 zeigt.
-3. Mit der Maus über Inventar-Karten fahren und Tooltips prüfen.
-4. Baum, Stein, Schrott, Bauplatz und Markt anklicken.
-5. Prüfen, ob das Kontextpanel Objekttyp, Beschreibung und geplante Aktion zeigt.
-6. DevTools-Konsole prüfen, ob keine JavaScript-Fehler auftreten.
+3. 5x Baum anklicken und prüfen, ob Holz auf 10 steigt.
+4. 3x Steinhaufen anklicken und prüfen, ob Stein auf 6 steigt.
+5. 1x Schrott anklicken und prüfen, ob Metall auf 1 steigt.
+6. Prüfen, ob Floating-Text kurz erscheint und wieder verschwindet.
+7. DevTools-Konsole prüfen, ob keine JavaScript-Fehler auftreten.
 
 ---
 
