@@ -9,7 +9,7 @@
     app.ui.renderHud(gameState);
     app.ui.renderStatus(gameState.message);
     app.world.renderWorld(world, (object) => {
-      gameState.selectedObjectId = object.id;
+      app.state.selectObject(gameState, object.id);
       gameState.message = object.description;
 
       console.log(`Startup Valley Objekt gewählt: ${object.name} (${object.id})`);

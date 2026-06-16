@@ -1,6 +1,6 @@
 # Startup Valley – Browserbasierte Wirtschafts- und Aufbausimulation
 
-**Projektstatus:** Konzept- und Codex-Startpaket  
+**Projektstatus:** Früher spielbarer Browser-Prototyp
 **Zielplattform:** Browser / HTML / CSS / JavaScript  
 **Deployment:** [GitHub Pages](https://jakobsawazki.github.io/startup-valley/)
 **Arbeitstitel:** Startup Valley  
@@ -16,7 +16,36 @@ Das Spiel soll bewusst mit einer kleinen Welt starten. Die Interaktion erfolgt p
 
 ---
 
-## 2. Kernidee
+## 2. Aktueller Versionsstand
+
+Aktuelle Version: `0.0.4-hud`
+
+Live-Version:
+
+- [GitHub Pages](https://jakobsawazki.github.io/startup-valley/)
+- [Repository](https://github.com/JakobSawazki/startup-valley)
+
+Aktuell umgesetzt:
+
+- grafische Startwelt mit PNG-Hintergrund
+- klickbare Weltobjekte: Bäume, Steine, Schrott, Bauplatz und Markt
+- zentrales `gameState`-Objekt in JavaScript
+- Inventar/HUD links mit Geld, Holz, Stein, Metall und Hausstufe
+- hochwertige transparente PNG-Icons für Ressourcen
+- Hover-/Focus-Effekte und Infotexte für Inventar und Weltobjekte
+- Kontextpanel für ausgewählte Objekte
+- GitHub Pages Deployment
+
+Noch offen für Version 0.1.0:
+
+- Ressourcen durch Klick sammeln
+- Bauplatzpanel und Gebäudestufen aktiv nutzen
+- Marktverkauf
+- Speichern, Laden und Reset über `localStorage`
+
+---
+
+## 3. Kernidee
 
 Der Spieler beginnt bei null:
 
@@ -37,7 +66,7 @@ Dazu sammelt der Spieler Holz, Stein und Metall, verkauft Überschüsse auf dem 
 
 ---
 
-## 3. Technische Zielrichtung
+## 4. Technische Zielrichtung
 
 Die erste Version soll als statische Web-App umgesetzt werden:
 
@@ -55,7 +84,38 @@ Speichern erfolgt in der ersten Version über `localStorage` im Browser.
 
 ---
 
-## 4. Codex-Schnellstart
+## 5. Grafik- und Asset-Strategie
+
+Startup Valley nutzt PNG-Dateien, damit Grafiken später einfach ersetzt werden können. Wichtig ist, dass die Dateinamen stabil bleiben:
+
+- Hintergrund: `assets/backgrounds/start_area.png`
+- Ressourcen: `assets/resources/tree_01.png`, `stone_01.png`, `scrap_01.png`
+- Gebäude: `assets/buildings/house_00_plot.png` bis `house_03_finished.png`
+- Inventar: `assets/ui/icons/money.png`, `wood.png`, `stone.png`, `metal.png`
+
+Aktuelle Richtung:
+
+- Der Hintergrund ist bereits hochwertig und atmosphärisch.
+- Die Inventar-Icons wurden auf realistischere transparente PNGs umgestellt.
+- Die Weltobjekt-Sprites sind austauschbare Platzhalter und sollen in einem späteren Asset-Pass stärker realistisch/fotorealistisch ausgearbeitet werden.
+- Beim Austausch neuer PNGs möglichst denselben Dateinamen behalten, damit Code und Daten unverändert bleiben.
+
+---
+
+## 6. Versionsnotizen
+
+| Version | Datum | Stand |
+|---|---|---|
+| `0.0.4-hud` | 2026-06-16 | Zentrales State/HUD-System, hochwertigere Inventar-Icons, Tooltips und Kontextpanel ergänzt |
+| `0.0.3-world` | 2026-06-16 | Grafische PNG-Startwelt mit klickbaren Weltobjekten veröffentlicht |
+| `0.0.2-online` | 2026-06-16 | GitHub Repository und GitHub Pages online gestellt |
+| `0.0.1` | 2026-06-16 | Erste HTML/CSS/JS-Grundstruktur erstellt |
+
+Details stehen zusätzlich in `docs/CHANGELOG.md`, `docs/VERSION_STATE.md` und `docs/HANDOFF.md`.
+
+---
+
+## 7. Codex-Schnellstart
 
 Ein neuer Codex-Agent muss zuerst diese Dateien lesen:
 
@@ -70,7 +130,7 @@ Danach darf nur die **erste offene Aufgabe** aus `TASKS.md` bearbeitet werden.
 
 ---
 
-## 5. Entwicklungsprinzip
+## 8. Entwicklungsprinzip
 
 Das Projekt wird in kleinen, stabilen Schritten entwickelt:
 
@@ -86,7 +146,7 @@ Das Projekt wird in kleinen, stabilen Schritten entwickelt:
 
 ---
 
-## 6. Ziel der Version 0.1.0
+## 9. Ziel der Version 0.1.0
 
 Version 0.1.0 gilt als erreicht, wenn Folgendes funktioniert:
 
@@ -104,7 +164,7 @@ Version 0.1.0 gilt als erreicht, wenn Folgendes funktioniert:
 
 ---
 
-## 7. Wichtig für den Projektcharakter
+## 10. Wichtig für den Projektcharakter
 
 Dieses Projekt soll langfristig professionell erweiterbar sein. Deshalb sind saubere Struktur, sprechende Dateinamen, kleine Funktionen und gute Dokumentation wichtiger als schnelle, unkontrollierte Feature-Mengen.
 

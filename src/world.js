@@ -7,6 +7,10 @@
       type: "resource_node",
       name: "Baum",
       description: "Ein hoher Baum am Rand des Startgebiets.",
+      resource: "wood",
+      amount: 2,
+      actionLabel: "Holz sammeln",
+      rewardLabel: "+2 Holz",
       x: 9,
       y: 21,
       width: 11,
@@ -17,6 +21,10 @@
       type: "resource_node",
       name: "Baum",
       description: "Kräftiges Holz für die ersten Bauphasen.",
+      resource: "wood",
+      amount: 2,
+      actionLabel: "Holz sammeln",
+      rewardLabel: "+2 Holz",
       x: 20,
       y: 35,
       width: 10,
@@ -27,6 +35,10 @@
       type: "resource_node",
       name: "Baum",
       description: "Ein weiterer Rohstoffpunkt für Holz.",
+      resource: "wood",
+      amount: 2,
+      actionLabel: "Holz sammeln",
+      rewardLabel: "+2 Holz",
       x: 31,
       y: 19,
       width: 10,
@@ -37,6 +49,10 @@
       type: "resource_node",
       name: "Steinhaufen",
       description: "Steine für Fundament und frühe Ausbauten.",
+      resource: "stone",
+      amount: 2,
+      actionLabel: "Stein sammeln",
+      rewardLabel: "+2 Stein",
       x: 18,
       y: 68,
       width: 12,
@@ -47,6 +63,10 @@
       type: "resource_node",
       name: "Steinhaufen",
       description: "Ein zweiter Steinvorrat nahe dem Weg.",
+      resource: "stone",
+      amount: 2,
+      actionLabel: "Stein sammeln",
+      rewardLabel: "+2 Stein",
       x: 38,
       y: 66,
       width: 12,
@@ -57,6 +77,10 @@
       type: "resource_node",
       name: "Schrott",
       description: "Ein kleiner Metallfund für spätere Bauphasen.",
+      resource: "metal",
+      amount: 1,
+      actionLabel: "Metall bergen",
+      rewardLabel: "+1 Metall",
       x: 51,
       y: 31,
       width: 11,
@@ -101,6 +125,7 @@
       button.style.width = `${object.width}%`;
       button.setAttribute("aria-label", object.name);
       button.title = object.name;
+      button.dataset.tooltip = object.description;
 
       const image = document.createElement("img");
       image.src = object.image;

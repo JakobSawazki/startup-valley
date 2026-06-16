@@ -14,6 +14,32 @@ Format:
 
 ---
 
+## [0.0.4-hud] – 2026-06-16
+
+### Added
+
+- Zentrale Ressourcen-Metadaten in `src/state.js` ergänzt.
+- HUD/Inventar rendert Geld, Holz, Stein, Metall und Hausstufe aus `gameState`.
+- Hover-/Focus-Tooltips für Inventar-Karten ergänzt.
+- Kontextpanel zeigt nach Objektklick den Objekttyp und eine vorbereitete Aktion.
+- Realistischere transparente PNG-Icons für Geld, Holz, Stein und Metall ergänzt.
+
+### Changed
+
+- Linkes HUD visuell zu einem Inventar mit größeren Icons, Wertanzeige und Infotexten aufgewertet.
+- Ressourcenwerte bleiben als State-Daten in JavaScript und werden nicht aus dem DOM gelesen.
+- README um aktuellen Versionsstand, Asset-Strategie und Versionsnotizen erweitert.
+
+### Fixed
+
+- Keine Spiellogikfehler behoben.
+
+### Docs
+
+- `TASK-003` abgeschlossen und nächsten Schritt auf `TASK-004` aktualisiert.
+- `docs/ASSET_GUIDE.md` um die Asset-Qualitätsrichtung ergänzt.
+- `docs/VERSION_STATE.md` und `docs/HANDOFF.md` auf den HUD-/Inventarstand aktualisiert.
+
 ## [0.0.3-world] – 2026-06-16
 
 ### Added

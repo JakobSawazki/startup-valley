@@ -7,7 +7,7 @@ Diese Datei muss nach jedem abgeschlossenen Arbeitsschritt aktualisiert werden.
 ## 1. Aktueller Stand
 
 **Projekt:** Startup Valley  
-**Version:** 0.0.3-world
+**Version:** 0.0.4-hud
 **Deployment:** erfolgreich über GitHub Pages
 **Repository:** https://github.com/JakobSawazki/startup-valley
 **GitHub Pages URL:** https://jakobsawazki.github.io/startup-valley/
@@ -20,12 +20,13 @@ Letzter bestätigter Test:
 - Live-Smoke-Test auf GitHub Pages erfolgreich: Titel, HUD, Spielwelt, CSS und JS korrekt geladen, keine Browser-Fehler/Warnungen.
 - Erfolgreiche GitHub-Actions-Läufe: `27638777888` (Push), `27638791425` (manuell).
 - TASK-002 lokaler Browser-Test erfolgreich: 8 Weltobjekte gerendert und angeklickt, Kontextpanel aktualisiert, keine Browser-Fehler/Warnungen.
+- TASK-003 lokaler Browser-Test erfolgreich: Inventar zeigt Geld, Holz, Stein, Metall und Hausstufe jeweils mit Startwert 0, Tooltips sind gesetzt, Objektklicks zeigen vorbereitete Aktionen, keine Browser-Fehler/Warnungen.
 
 ---
 
 ## 2. Was existiert aktuell?
 
-Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie eine lauffähige HTML/CSS/JS-Grundstruktur mit grafischer PNG-Startwelt.
+Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie eine lauffähige HTML/CSS/JS-Grundstruktur mit grafischer PNG-Startwelt und aufgewertetem Inventar/HUD.
 
 Enthalten:
 
@@ -34,7 +35,9 @@ Enthalten:
 - `src/main.js`, `src/state.js`, `src/ui.js`, `src/world.js`
 - PNG-Hintergrund `assets/backgrounds/start_area.png`
 - transparente PNG-Objekte in `assets/resources/` und `assets/buildings/`
-- PNG-Icons in `assets/ui/icons/`
+- realistischere transparente PNG-Icons in `assets/ui/icons/`
+- zentraler `gameState` mit Startwerten für Geld, Holz, Stein, Metall und Hausstufe
+- Inventar-Tooltips und Kontextpanel für Objektinteraktionen
 - `data/world_start.json`
 - Projektbeschreibung
 - Agentenregeln
@@ -76,6 +79,22 @@ Geänderte Dateien in TASK-002:
 - `assets/buildings/house_00_plot.png`, `house_01_foundation.png`, `house_02_frame.png`, `house_03_finished.png`, `market_01.png`
 - `assets/ui/icons/money.png`, `wood.png`, `stone.png`, `metal.png`
 
+Geänderte Dateien in TASK-003:
+
+- `index.html`
+- `styles/main.css`
+- `src/main.js`
+- `src/state.js`
+- `src/ui.js`
+- `src/world.js`
+- `assets/ui/icons/money.png`, `wood.png`, `stone.png`, `metal.png`
+- `README.md`
+- `docs/ASSET_GUIDE.md`
+- `docs/CHANGELOG.md`
+- `docs/VERSION_STATE.md`
+- `docs/HANDOFF.md`
+- `TASKS.md`
+
 ---
 
 ## 3. Nächster notwendiger Schritt
@@ -83,7 +102,7 @@ Geänderte Dateien in TASK-002:
 Der nächste Codex-Agent soll in `TASKS.md` die erste offene Aufgabe bearbeiten:
 
 ```text
-TASK-003 – Spielzustand und HUD einführen
+TASK-004 – Manuelles Ressourcensammeln implementieren
 ```
 
 ---
@@ -112,16 +131,16 @@ Du arbeitest am Projekt "Startup Valley", einer browserbasierten klickbaren Wirt
 
 ---
 
-## 6. Testanleitung nach TASK-002
+## 6. Testanleitung nach TASK-003
 
-Nach der grafischen Startwelt:
+Nach dem Inventar/HUD:
 
 1. `index.html` lokal im Browser öffnen.
-2. Prüfen, ob PNG-Hintergrund, HUD-Icons und Weltobjekte sichtbar sind.
-3. DevTools öffnen.
-4. Alle Bäume, Steinhaufen, Schrott, Bauplatz und Markt anklicken.
-5. Prüfen, ob das Kontextpanel den Objektnamen zeigt.
-6. Prüfen, ob keine JavaScript-Fehler auftreten.
+2. Prüfen, ob Inventar links Geld, Holz, Stein, Metall und Hausstufe mit Wert 0 zeigt.
+3. Mit der Maus über Inventar-Karten fahren und Tooltips prüfen.
+4. Baum, Stein, Schrott, Bauplatz und Markt anklicken.
+5. Prüfen, ob das Kontextpanel Objekttyp, Beschreibung und geplante Aktion zeigt.
+6. DevTools-Konsole prüfen, ob keine JavaScript-Fehler auftreten.
 
 ---
 
@@ -159,6 +178,7 @@ Aktuellen Stand mit `git log -1 --oneline` prüfen. Der erste erfolgreich deploy
 - finaler Projektname: aktuell `Startup Valley`
 - Grafikstil: moderne 2D-/Top-Down-/leicht isometrische Richtung
 - Assets: aktuelle PNGs sind hochwertige Platzhalter und dürfen später unter gleichem Dateinamen ersetzt werden
+- Wunsch für nächsten Asset-Pass: Weltobjekte fotorealistischer ausarbeiten, ohne Dateinamen zu ändern
 - Repositoryname: Empfehlung `startup-valley`
 - Repository ist öffentlich für einfaches Pages-Deployment
 

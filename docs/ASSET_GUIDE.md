@@ -174,3 +174,20 @@ Wenn Grafiken ersetzt werden:
 3. Falls Größe stark abweicht, Objektpositionen prüfen.
 4. Nach Austausch Browsercache beachten.
 5. Screenshot oder Notiz in `docs/HANDOFF.md` ergänzen, wenn relevant.
+
+---
+
+## 11. Aktuelle Qualitätsrichtung
+
+Stand `0.0.4-hud`:
+
+- `assets/backgrounds/start_area.png` ist eine hochwertige atmosphärische Startwelt und kann vorerst bleiben.
+- `assets/ui/icons/*.png` wurden auf realistischere transparente PNG-Icons umgestellt.
+- `assets/resources/*.png` und `assets/buildings/*.png` sind bewusst austauschbare Platzhalter-Sprites.
+
+Nächster Asset-Pass:
+
+- Bäume, Steine, Schrott, Bauplatz, Markt und Hausstufen stärker realistisch/fotorealistisch ausarbeiten.
+- Transparente PNGs mit sauberem Rand und ohne Hintergrund verwenden.
+- Dateinamen stabil halten, damit Code und Weltobjektdaten nicht geändert werden müssen.
+- Größe grob beibehalten oder nach Austausch Positionierung in `src/world.js` prüfen.

@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.3-world
+0.0.4-hud
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand und aufgewertetem Inventar/HUD.
 
 Online erreichbar:
 
@@ -27,15 +27,20 @@ Implementiert:
 - `src/state.js`
 - `src/ui.js`
 - `src/world.js`
+- zentraler `gameState` in `src/state.js`
+- Ressourcen-Metadaten für Geld, Holz, Stein und Metall
 - sichtbarer Spielbereich mit PNG-Hintergrund
 - klickbare Weltobjekte: 3 Bäume, 2 Steinhaufen, Schrott, Bauplatz, Markt
-- HUD mit PNG-Icons für Geld, Holz, Stein, Metall und Hausstufe
+- HUD/Inventar mit korrekten Startwerten 0 für Geld, Holz, Stein, Metall und Hausstufe
+- hochwertige realistischere PNG-Icons für Geld, Holz, Stein und Metall
+- Hover-/Focus-Tooltips für Inventar und Weltobjekte
+- Kontextpanel mit vorbereiteten Interaktionshinweisen
 - austauschbare PNG-Assets unter `assets/backgrounds/`, `assets/resources/`, `assets/buildings/` und `assets/ui/icons/`
 - `data/world_start.json` als vorbereitete Datenreferenz
 
 Noch nicht implementiert:
 
-- Ressourcenlogik
+- Ressourcenlogik: Klicks wählen aktuell nur Objekte aus; Sammeln startet in TASK-004
 - Bauplatzlogik
 - Marktlogik
 - Speichern/Laden
@@ -84,7 +89,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-TASK-002 abgeschlossen: Startup Valley rendert eine grafische PNG-Startwelt, zeigt mindestens 3 Bäume, 2 Steinhaufen, Bauplatz und Markt und erkennt Klicks auf jedes Objekt.
+TASK-003 abgeschlossen: Inventar/HUD rendert Geld, Holz, Stein, Metall und Hausstufe aus zentralem gameState mit Startwert 0. Objektklicks aktualisieren das Kontextpanel, verändern aber noch keine Ressourcen.
 ```
 
 ---
@@ -95,7 +100,7 @@ TASK-002 abgeschlossen: Startup Valley rendert eine grafische PNG-Startwelt, zei
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die statische Startwelt aus TASK-002.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die statische Startwelt mit Inventar aus TASK-003.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 - Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
 
@@ -104,5 +109,5 @@ TASK-002 abgeschlossen: Startup Valley rendert eine grafische PNG-Startwelt, zei
 ## Nächster Schritt
 
 ```text
-TASK-003 – Spielzustand und HUD einführen
+TASK-004 – Manuelles Ressourcensammeln implementieren
 ```

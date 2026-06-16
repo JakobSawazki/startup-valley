@@ -74,7 +74,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-003 – Spielzustand und HUD einführen
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Zentralen Spielzustand und Ressourcenanzeige implementieren.
 
 **Umfang:**

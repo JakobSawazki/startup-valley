@@ -17,13 +17,14 @@
           <p class="eyebrow">Browser-Aufbauspiel</p>
           <h1>Startup Valley</h1>
         </div>
-        <div class="build-label" id="build-label">Version 0.0.3</div>
+        <div class="build-label" id="build-label">Version 0.0.4</div>
       </header>
 
       <main class="game-layout" aria-label="Startup Valley Spielfeld">
         <section class="hud" aria-labelledby="hud-title">
-          <h2 id="hud-title">HUD</h2>
-          <div class="resource-grid" id="resource-grid">
+          <h2 id="hud-title">Inventar</h2>
+          <p class="hud-intro">Aktuelle Bestände und Gebäudefortschritt.</p>
+          <div class="resource-grid" id="resource-grid" role="list">
             <div class="resource-card">Geld: 0 EUR</div>
             <div class="resource-card">Holz: 0</div>
             <div class="resource-card">Stein: 0</div>
@@ -47,7 +48,7 @@
 
         <aside class="context-panel" aria-labelledby="context-title">
           <h2 id="context-title">Startgebiet</h2>
-          <p id="message-line">Wähle ein Objekt im Startgebiet aus.</p>
+          <div class="context-content" id="message-line">Wähle ein Objekt im Startgebiet aus.</div>
         </aside>
       </main>
     </div>
