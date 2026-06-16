@@ -129,7 +129,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-005 – Bauplatz auswählen und Aktionspanel anzeigen
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Bauplatz wird zum zentralen Interaktionsobjekt.
 
 **Umfang:**

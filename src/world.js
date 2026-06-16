@@ -96,6 +96,7 @@
       id: "main_house",
       type: "building",
       name: "Bauplatz",
+      buildingId: "mainHouse",
       description: "Hier entsteht später das erste Firmengebäude.",
       x: 61,
       y: 53,

@@ -14,6 +14,36 @@
     return unit ? `${value} ${unit}` : String(value);
   }
 
+  function formatResourceAmount(resourceId, value) {
+    const meta = window.StartupValley.state.resourceMeta[resourceId];
+    return formatValue(value, meta?.unit || "");
+  }
+
+  function renderCostRows(gameState, cost) {
+    const appState = window.StartupValley.state;
+    const entries = appState.getCostEntries(cost);
+
+    if (entries.length === 0) {
+      return `<li class="cost-row is-ready">Keine weiteren Kosten</li>`;
+    }
+
+    return entries
+      .map((entry) => {
+        const meta = appState.resourceMeta[entry.resourceId];
+        const available = appState.getResourceAmount(gameState, entry.resourceId);
+        const hasEnough = available >= entry.amount;
+        const amountText = `${formatResourceAmount(entry.resourceId, available)} / ${formatResourceAmount(entry.resourceId, entry.amount)}`;
+
+        return `
+          <li class="cost-row ${hasEnough ? "is-ready" : "is-missing"}">
+            <span class="cost-label">${escapeHtml(meta.label)}</span>
+            <span class="cost-value">${escapeHtml(amountText)}</span>
+          </li>
+        `;
+      })
+      .join("");
+  }
+
   function renderHud(gameState) {
     const resourceGrid = document.querySelector("#resource-grid");
     const appState = window.StartupValley.state;
@@ -114,7 +144,83 @@
     return "Geplante Aktion: Objekt auswählen.";
   }
 
-  function renderObjectMessage(object, actionResult) {
+  function renderBuildingPanel(object, gameState) {
+    const title = document.querySelector("#context-title");
+    const messageLine = document.querySelector("#message-line");
+    const appState = window.StartupValley.state;
+
+    if (!title || !messageLine) {
+      return;
+    }
+
+    const buildingId = object.buildingId || "mainHouse";
+    const currentLevel = appState.getCurrentBuildingLevel(gameState, buildingId);
+    const nextLevel = appState.getNextBuildingLevel(gameState, buildingId);
+
+    title.textContent = object.name;
+
+    if (!nextLevel) {
+      messageLine.innerHTML = `
+        <section class="building-panel" aria-label="Bauplatzstatus">
+          <span class="context-kicker context-kicker-success">Voll ausgebaut</span>
+          <div class="building-summary">
+            <strong>${escapeHtml(currentLevel.name)}</strong>
+            <span>${escapeHtml(currentLevel.description)}</span>
+          </div>
+        </section>
+      `;
+      return;
+    }
+
+    const canUpgrade = appState.canAffordCost(gameState, nextLevel.cost);
+    const missingCost = appState.getMissingCost(gameState, nextLevel.cost);
+    const missingText = missingCost.length
+      ? `Fehlt: ${missingCost
+        .map((entry) => `${formatResourceAmount(entry.resourceId, entry.missing)} ${appState.resourceMeta[entry.resourceId].label}`)
+        .join(", ")}`
+      : "Material bereit.";
+
+    messageLine.innerHTML = `
+      <section class="building-panel" aria-label="Bauplatzstatus">
+        <span class="context-kicker">Bauprojekt</span>
+        <div class="building-summary">
+          <strong>${escapeHtml(currentLevel.name)} · Stufe ${currentLevel.level}</strong>
+          <span>${escapeHtml(currentLevel.description)}</span>
+        </div>
+        <div class="building-stage-grid">
+          <div class="building-stage">
+            <span>Aktuell</span>
+            <strong>${escapeHtml(currentLevel.status)}</strong>
+          </div>
+          <div class="building-stage building-stage-next">
+            <span>Nächste Stufe</span>
+            <strong>${escapeHtml(nextLevel.name)}</strong>
+          </div>
+        </div>
+        <div class="building-costs">
+          <strong>Anforderungen</strong>
+          <ul class="cost-list">
+            ${renderCostRows(gameState, nextLevel.cost)}
+          </ul>
+        </div>
+        <div class="building-actions">
+          <button class="primary-action" id="build-upgrade-button" type="button" ${canUpgrade ? "" : "disabled"}>Ausbauen</button>
+          <span class="building-notice ${canUpgrade ? "is-ready" : "is-missing"}">${escapeHtml(missingText)}</span>
+        </div>
+      </section>
+    `;
+
+    const upgradeButton = messageLine.querySelector("#build-upgrade-button");
+    const notice = messageLine.querySelector(".building-notice");
+
+    if (upgradeButton && notice && canUpgrade) {
+      upgradeButton.addEventListener("click", () => {
+        notice.textContent = "Ausbau bereit.";
+      });
+    }
+  }
+
+  function renderObjectMessage(object, actionResult, gameState) {
     const title = document.querySelector("#context-title");
     const messageLine = document.querySelector("#message-line");
 
@@ -123,6 +229,11 @@
     }
 
     title.textContent = object.name;
+
+    if (object.type === "building" && gameState) {
+      renderBuildingPanel(object, gameState);
+      return;
+    }
 
     if (actionResult && actionResult.success) {
       messageLine.innerHTML = `

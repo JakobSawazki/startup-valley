@@ -6,72 +6,65 @@ Diese Datei muss nach jedem abgeschlossenen Arbeitsschritt aktualisiert werden.
 
 ## 1. Aktueller Stand
 
-**Projekt:** Startup Valley  
-**Version:** 0.0.6-depletion
-**Deployment:** erfolgreich über GitHub Pages
-**Repository:** https://github.com/JakobSawazki/startup-valley
-**GitHub Pages URL:** https://jakobsawazki.github.io/startup-valley/
+- **Projekt:** Startup Valley
+- **Version:** 0.0.7-build-panel
+- **Deployment:** GitHub Pages über Workflow auf `main`
+- **Repository:** https://github.com/JakobSawazki/startup-valley
+- **GitHub Pages URL:** https://jakobsawazki.github.io/startup-valley/
 
-Letzter bestätigter Test:
+Aktueller stabiler Stand:
+
+- Browser-Spiel läuft statisch über `index.html`.
+- HUD zeigt Geld, Holz, Stein, Metall und Hausstufe mit Startwert 0.
+- Startwelt zeigt PNG-Hintergrund und klickbare Weltobjekte.
+- Ressourcenquellen sind begrenzt abbaubar, schrumpfen und verschwinden bei 0.
+- Ressourcen-Sprites für Bäume, Steinhaufen und Schrott sind jetzt realistischere transparente PNGs.
+- Bauplatzpanel öffnet bei Klick auf den Bauplatz.
+- Panel zeigt aktuelle Stufe, nächste Stufe und Anforderungen für `Fundament`.
+- Ausbau-Button ist ohne Ressourcen deaktiviert und bei 10 Holz + 20 Stein aktiv.
+- Der Button verbraucht noch keine Ressourcen und wechselt noch keine Gebäudegrafik; das ist `TASK-006`.
+
+Letzter bestätigter lokaler Test:
 
 - JS-Syntaxcheck mit gebündelter Node-Laufzeit erfolgreich.
-- Browser-Smoke-Test über temporären lokalen Static-Server `http://127.0.0.1:8765/` erfolgreich.
-- Geprüft: Titel `Startup Valley`, sichtbares HUD, sichtbare Spielwelt, CSS geladen, keine Browser-Fehler/Warnungen.
-- Live-Smoke-Test auf GitHub Pages erfolgreich: Titel, HUD, Spielwelt, CSS und JS korrekt geladen, keine Browser-Fehler/Warnungen.
-- Erfolgreiche GitHub-Actions-Läufe: `27638777888` (Push), `27638791425` (manuell).
-- TASK-002 lokaler Browser-Test erfolgreich: 8 Weltobjekte gerendert und angeklickt, Kontextpanel aktualisiert, keine Browser-Fehler/Warnungen.
-- TASK-003 lokaler Browser-Test erfolgreich: Inventar zeigt Geld, Holz, Stein, Metall und Hausstufe jeweils mit Startwert 0, Tooltips sind gesetzt, Objektklicks zeigen vorbereitete Aktionen, keine Browser-Fehler/Warnungen.
-- TASK-004 lokaler Browser-Test erfolgreich: 5 Baumklicks ergeben Holz 10, 3 Steinklicks ergeben Stein 6, Schrottklick ergibt Metall 1, Floating-Text verschwindet wieder, keine Browser-Fehler/Warnungen.
-- Erweiterung 0.0.6 lokal getestet: Baum schrumpft nach 3 Klicks, ist nach 6 Klicks deaktiviert/unsichtbar und erhöht danach Holz nicht weiter; Stein und Schrott erschöpfen ebenfalls korrekt.
+- Browser-Smoke-Test über temporären Static-Server `http://127.0.0.1:8765/` erfolgreich.
+- Geprüft: Version `0.0.7`, 8 Weltobjekte, neue Ressourcen-PNG-Pfade, HUD Startwerte 0.
+- Bauplatz ohne Ressourcen: Panel erscheint, Anforderungen zeigen Holz `0 / 10`, Stein `0 / 20`, Button deaktiviert.
+- Danach gesammelt: 5x Baum = 10 Holz, 5x `stone_01` + 5x `stone_02` = 20 Stein.
+- Bauplatz mit Ressourcen: Anforderungen zeigen Holz `10 / 10`, Stein `20 / 20`, Button aktiv.
+- Beide Steinhaufen waren nach 5 Klicks deaktiviert und `is-depleted`.
+- Browser-Konsole: keine Warnungen oder Fehler.
+
+Hinweis zum Browser-Test:
+
+- Ein Screenshot-Versuch über das Browser-Tool ist einmal in `Page.captureScreenshot` getimeoutet; der DOM-/Interaktionstest selbst war erfolgreich.
 
 ---
 
 ## 2. Was existiert aktuell?
 
-Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie eine lauffähige HTML/CSS/JS-Grundstruktur mit grafischer PNG-Startwelt, aufgewertetem Inventar/HUD, manuellem Ressourcen-Sammeln und erschöpfbaren Ressourcenquellen.
-
 Enthalten:
 
-- `index.html` mit sichtbarem Spielbereich und HUD
+- `index.html` mit sichtbarem Spielbereich, HUD, Kontextpanel und Version `0.0.7`
 - `styles/main.css`
 - `src/main.js`, `src/state.js`, `src/ui.js`, `src/world.js`
 - `src/resources.js`
 - PNG-Hintergrund `assets/backgrounds/start_area.png`
 - transparente PNG-Objekte in `assets/resources/` und `assets/buildings/`
+- realistischere transparente Ressourcen-Sprites:
+  - `assets/resources/tree_01.png`
+  - `assets/resources/tree_02.png`
+  - `assets/resources/tree_03.png`
+  - `assets/resources/stone_01.png`
+  - `assets/resources/stone_02.png`
+  - `assets/resources/scrap_01.png`
 - realistischere transparente PNG-Icons in `assets/ui/icons/`
-- zentraler `gameState` mit Startwerten für Geld, Holz, Stein, Metall und Hausstufe
-- manuelles Sammeln: Baum `+2 Holz`, Stein `+2 Stein`, Schrott `+1 Metall`
-- Ressourcenquellen schrumpfen pro Klick, verschwinden bei 0 und sind dann deaktiviert
 - Favicon / Tab-Icon: `assets/ui/favicon.png` und `favicon.ico`
-- Floating-Feedback nach Sammelaktionen
-- Inventar-Tooltips und Kontextpanel für Objektinteraktionen
 - `data/world_start.json`
-- Projektbeschreibung
-- Agentenregeln
-- Aufgabenplan
-- technisches Konzept
-- Datenmodell
-- UI/UX-Konzept
-- Asset-Leitfaden
-- GitHub-Deployment-Anleitung
-- vorbereiteter GitHub-Pages-Workflow
+- Projekt- und Codex-Dokumentation
+- GitHub-Pages-Workflow
 
-Geänderte Dateien in TASK-001:
-
-- `index.html`
-- `styles/main.css`
-- `src/main.js`
-- `src/state.js`
-- `src/ui.js`
-- `assets/backgrounds/.gitkeep`
-- `assets/buildings/.gitkeep`
-- `assets/resources/.gitkeep`
-- `assets/ui/icons/.gitkeep`
-- `data/.gitkeep`
-- mehrere Dokumentationsdateien für Projektname, Version, Handoff und Deployment-Hinweise
-- `.github/workflows/deploy.yml` für GitHub Pages mit Node-24-Opt-in
-
-Geänderte Dateien in TASK-002:
+Geänderte Dateien in `TASK-005` / Version `0.0.7-build-panel`:
 
 - `index.html`
 - `styles/main.css`
@@ -79,56 +72,14 @@ Geänderte Dateien in TASK-002:
 - `src/state.js`
 - `src/ui.js`
 - `src/world.js`
-- `data/world_start.json`
-- `assets/backgrounds/start_area.png`
-- `assets/resources/tree_01.png`, `tree_02.png`, `tree_03.png`
-- `assets/resources/stone_01.png`, `stone_02.png`, `scrap_01.png`
-- `assets/buildings/house_00_plot.png`, `house_01_foundation.png`, `house_02_frame.png`, `house_03_finished.png`, `market_01.png`
-- `assets/ui/icons/money.png`, `wood.png`, `stone.png`, `metal.png`
-
-Geänderte Dateien in TASK-003:
-
-- `index.html`
-- `styles/main.css`
-- `src/main.js`
-- `src/state.js`
-- `src/ui.js`
-- `src/world.js`
-- `assets/ui/icons/money.png`, `wood.png`, `stone.png`, `metal.png`
+- `assets/resources/tree_01.png`
+- `assets/resources/tree_02.png`
+- `assets/resources/tree_03.png`
+- `assets/resources/stone_01.png`
+- `assets/resources/stone_02.png`
+- `assets/resources/scrap_01.png`
 - `README.md`
-- `docs/ASSET_GUIDE.md`
-- `docs/CHANGELOG.md`
-- `docs/VERSION_STATE.md`
-- `docs/HANDOFF.md`
 - `TASKS.md`
-
-Geänderte Dateien in TASK-004:
-
-- `index.html`
-- `styles/main.css`
-- `src/main.js`
-- `src/state.js`
-- `src/ui.js`
-- `src/resources.js`
-- `README.md`
-- `docs/CHANGELOG.md`
-- `docs/VERSION_STATE.md`
-- `docs/HANDOFF.md`
-- `TASKS.md`
-
-Geänderte Dateien in Erweiterung 0.0.6:
-
-- `index.html`
-- `styles/main.css`
-- `src/main.js`
-- `src/state.js`
-- `src/world.js`
-- `src/resources.js`
-- `src/ui.js`
-- `data/world_start.json`
-- `assets/ui/favicon.png`
-- `favicon.ico`
-- `README.md`
 - `docs/ASSET_GUIDE.md`
 - `docs/CHANGELOG.md`
 - `docs/VERSION_STATE.md`
@@ -141,8 +92,17 @@ Geänderte Dateien in Erweiterung 0.0.6:
 Der nächste Codex-Agent soll in `TASKS.md` die erste offene Aufgabe bearbeiten:
 
 ```text
-TASK-005 – Bauplatz auswählen und Aktionspanel anzeigen
+TASK-006 – Gebäudestufen und Ressourcenverbrauch umsetzen
 ```
+
+TASK-006 soll den vorhandenen Ausbau-Button tatsächlich ausführen lassen:
+
+- Ressourcenprüfung wiederverwenden
+- Kosten abziehen
+- Hauslevel erhöhen
+- passende Gebäudegrafik anzeigen
+- HUD und Kontextpanel aktualisieren
+- Maximalstufe beachten
 
 ---
 
@@ -157,6 +117,7 @@ Vor Arbeit lesen:
 5. `docs/VERSION_STATE.md`
 6. `docs/CHANGELOG.md`
 7. `docs/TECHNICAL_SPEC.md`
+8. `docs/GITHUB_DEPLOYMENT.md`
 
 ---
 
@@ -170,29 +131,22 @@ Du arbeitest am Projekt "Startup Valley", einer browserbasierten klickbaren Wirt
 
 ---
 
-## 6. Testanleitung nach TASK-004
+## 6. Testanleitung nach TASK-005
 
-Nach dem Sammel-Loop:
-
-1. `index.html` lokal im Browser öffnen.
-2. Prüfen, ob Inventar links Geld, Holz, Stein, Metall und Hausstufe mit Wert 0 zeigt.
-3. 6x denselben Baum anklicken und prüfen, ob Holz auf 12 steigt, der Baum kleiner wird und dann verschwindet.
-4. Einen weiteren Klick auf den erschöpften Baum versuchen; Holz darf nicht weiter steigen.
-5. 5x denselben Steinhaufen anklicken und prüfen, ob Stein auf 10 steigt und der Steinhaufen verschwindet.
-6. 4x Schrott anklicken und prüfen, ob Metall auf 4 steigt und Schrott verschwindet.
-7. Prüfen, ob Floating-Text kurz erscheint und wieder verschwindet.
-8. DevTools-Konsole prüfen, ob keine JavaScript-Fehler auftreten.
+1. Lokalen Static-Server im Projektordner starten, z. B. `python -m http.server 8765 --bind 127.0.0.1`.
+2. `http://127.0.0.1:8765/` im Browser öffnen.
+3. Prüfen, ob Inventar Geld, Holz, Stein, Metall und Hausstufe mit Wert 0 zeigt.
+4. Bauplatz anklicken.
+5. Prüfen, ob das Panel `Bauplatz · Stufe 0`, `Nächste Stufe: Fundament`, Holz `0 / 10`, Stein `0 / 20` und einen deaktivierten Button zeigt.
+6. 5x einen Baum anklicken, damit Holz auf 10 steigt.
+7. 5x `stone_01` und 5x `stone_02` anklicken, damit Stein auf 20 steigt.
+8. Bauplatz erneut anklicken.
+9. Prüfen, ob Holz `10 / 10`, Stein `20 / 20` und der Button aktiv ist.
+10. DevTools-Konsole prüfen, ob keine JavaScript-Fehler auftreten.
 
 ---
 
 ## 7. GitHub-Handshake
-
-Wenn das Repository angelegt wurde:
-
-- Repository-URL hier eintragen
-- Pages-URL hier eintragen
-- letzten Commit-Hash eintragen
-- aktueller Taskstatus aktualisieren
 
 ### Repository-URL
 
@@ -209,7 +163,7 @@ https://jakobsawazki.github.io/startup-valley/
 ### Letzter bestätigter Commit
 
 ```text
-Aktuellen Stand mit `git log -1 --oneline` prüfen. Der erste erfolgreich deployte Basisstand war fc13842.
+Aktuellen Stand mit `git log -1 --oneline` prüfen.
 ```
 
 ---
@@ -218,9 +172,9 @@ Aktuellen Stand mit `git log -1 --oneline` prüfen. Der erste erfolgreich deploy
 
 - finaler Projektname: aktuell `Startup Valley`
 - Grafikstil: moderne 2D-/Top-Down-/leicht isometrische Richtung
-- Assets: aktuelle PNGs sind hochwertige Platzhalter und dürfen später unter gleichem Dateinamen ersetzt werden
-- Wunsch für nächsten Asset-Pass: Weltobjekte fotorealistischer ausarbeiten, ohne Dateinamen zu ändern
-- Repositoryname: Empfehlung `startup-valley`
+- Assets: PNG-Dateinamen stabil halten, damit Grafiken später einfach ersetzt werden können
+- nächster Asset-Pass: Bauplatz, Markt und Hausstufen fotorealistischer ausarbeiten
+- Repositoryname: `startup-valley`
 - Repository ist öffentlich für einfaches Pages-Deployment
 
 ---

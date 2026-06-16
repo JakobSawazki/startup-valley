@@ -39,12 +39,57 @@
       label: "Hausstufe",
       shortLabel: "Baufortschritt",
       icon: "assets/buildings/house_00_plot.png",
-      description: "Aktueller Ausbaufortschritt des ersten Firmengebäudes."
+      description: "Aktueller Ausbaufortschritt des ersten Firmengebäudes.",
+      levels: [
+        {
+          level: 0,
+          name: "Bauplatz",
+          status: "Freies Grundstück",
+          image: "assets/buildings/house_00_plot.png",
+          description: "Der Standort ist vorbereitet, aber noch nicht bebaut."
+        },
+        {
+          level: 1,
+          name: "Fundament",
+          status: "Erste Baustufe",
+          image: "assets/buildings/house_01_foundation.png",
+          description: "Ein stabiles Fundament für das künftige Firmengebäude.",
+          cost: {
+            wood: 10,
+            stone: 20
+          }
+        },
+        {
+          level: 2,
+          name: "Rohbau",
+          status: "Zweite Baustufe",
+          image: "assets/buildings/house_02_frame.png",
+          description: "Der sichtbare Rohbau mit tragender Struktur.",
+          cost: {
+            wood: 30,
+            stone: 40,
+            metal: 5
+          }
+        },
+        {
+          level: 3,
+          name: "Einfaches Firmengebäude",
+          status: "Dritte Baustufe",
+          image: "assets/buildings/house_03_finished.png",
+          description: "Ein kleines nutzbares Firmengebäude für Startup Valley.",
+          cost: {
+            money: 100,
+            wood: 50,
+            stone: 30,
+            metal: 10
+          }
+        }
+      ]
     }
   };
 
   const initialState = {
-    version: "0.0.6",
+    version: "0.0.7",
     money: 0,
     resources: {
       wood: 0,
@@ -77,8 +122,57 @@
     return gameState.resources[resourceId] ?? 0;
   }
 
+  function getBuildingLevel(gameState, buildingId) {
+    return gameState.buildings[buildingId]?.level ?? 0;
+  }
+
   function getHouseLevel(gameState) {
-    return gameState.buildings.mainHouse.level;
+    return getBuildingLevel(gameState, "mainHouse");
+  }
+
+  function getBuildingLevelDefinition(buildingId, level) {
+    const levels = buildingMeta[buildingId]?.levels || [];
+    return levels.find((definition) => definition.level === level) || levels[0] || null;
+  }
+
+  function getCurrentBuildingLevel(gameState, buildingId) {
+    return getBuildingLevelDefinition(buildingId, getBuildingLevel(gameState, buildingId));
+  }
+
+  function getNextBuildingLevel(gameState, buildingId) {
+    return getBuildingLevelDefinition(buildingId, getBuildingLevel(gameState, buildingId) + 1);
+  }
+
+  function getCostEntries(cost) {
+    if (!cost) {
+      return [];
+    }
+
+    return resourceOrder
+      .filter((resourceId) => Number.isFinite(cost[resourceId]) && cost[resourceId] > 0)
+      .map((resourceId) => ({
+        resourceId,
+        amount: cost[resourceId]
+      }));
+  }
+
+  function getMissingCost(gameState, cost) {
+    return getCostEntries(cost)
+      .map((entry) => {
+        const available = getResourceAmount(gameState, entry.resourceId);
+        const missing = Math.max(0, entry.amount - available);
+
+        return {
+          ...entry,
+          available,
+          missing
+        };
+      })
+      .filter((entry) => entry.missing > 0);
+  }
+
+  function canAffordCost(gameState, cost) {
+    return getMissingCost(gameState, cost).length === 0;
   }
 
   function addResource(gameState, resourceId, amount) {
@@ -144,7 +238,14 @@
     resourceMeta,
     buildingMeta,
     getResourceAmount,
+    getBuildingLevel,
     getHouseLevel,
+    getBuildingLevelDefinition,
+    getCurrentBuildingLevel,
+    getNextBuildingLevel,
+    getCostEntries,
+    getMissingCost,
+    canAffordCost,
     addResource,
     ensureResourceNode,
     consumeResourceNode,

@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.6-depletion
+0.0.7-build-panel
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD und erschöpfbaren Ressourcenquellen.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD, erschöpfbaren Ressourcenquellen und einem ersten Bauplatzpanel.
 
 Online erreichbar:
 
@@ -27,9 +27,10 @@ Implementiert:
 - `src/state.js`
 - `src/ui.js`
 - `src/world.js`
+- `src/resources.js`
 - zentraler `gameState` in `src/state.js`
 - Ressourcen-Metadaten für Geld, Holz, Stein und Metall
-- `src/resources.js` mit manueller Sammellogik
+- zentrale Gebäudestufen und Baukosten für das Hauptgebäude
 - sichtbarer Spielbereich mit PNG-Hintergrund
 - klickbare Weltobjekte: 3 Bäume, 2 Steinhaufen, Schrott, Bauplatz, Markt
 - Baumklick erhöht Holz um 2
@@ -40,7 +41,10 @@ Implementiert:
 - HUD/Inventar mit korrekten Startwerten 0 für Geld, Holz, Stein, Metall und Hausstufe
 - HUD aktualisiert sich sofort nach Sammelaktionen
 - Floating-Text zeigt den erhaltenen Ressourcenwert
+- Bauplatzpanel zeigt aktuelle Stufe, nächste Stufe und Anforderungen
+- Ausbau-Button ist ohne Ressourcen deaktiviert und bei erfüllten Anforderungen aktiv
 - Favicon und Browser-Tab-Icon unter `assets/ui/favicon.png` und `favicon.ico`
+- realistischere transparente PNG-Sprites für Bäume, Steinhaufen und Schrott
 - hochwertige realistischere PNG-Icons für Geld, Holz, Stein und Metall
 - Hover-/Focus-Tooltips für Inventar und Weltobjekte
 - Kontextpanel mit vorbereiteten Interaktionshinweisen
@@ -49,9 +53,11 @@ Implementiert:
 
 Noch nicht implementiert:
 
-- Bauplatzlogik
+- Ressourcenverbrauch und sichtbarer Stufenwechsel beim Gebäudebau
 - Marktlogik
 - Speichern/Laden
+
+Vorhandene Dokumentation:
 
 - Codex-Briefing
 - Aufgabenplan
@@ -97,7 +103,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-Ressourcenquellen sind erschöpfbar: Bäume haben 6 Abbaupunkte, Steinhaufen 5 und Schrott 4. Quellen werden kleiner, verschwinden bei 0 und erhöhen danach keine Ressourcen mehr.
+Bauplatzpanel funktioniert: Ohne Ressourcen ist der Button deaktiviert. Nach 5 Baumklicks und je 5 Klicks auf beide Steinhaufen stehen 10 Holz und 20 Stein bereit; das Panel zeigt beide Anforderungen als erfüllt und der Ausbau-Button ist aktiv.
 ```
 
 ---
@@ -108,14 +114,15 @@ Ressourcenquellen sind erschöpfbar: Bäume haben 6 Abbaupunkte, Steinhaufen 5 u
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln und erschöpfbaren Ressourcenquellen.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln, erschöpfbaren Ressourcenquellen und Bauplatzpanel.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 - Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
+- Der Ausbau-Button führt noch keinen Ressourcenverbrauch aus; das ist bewusst Aufgabe von `TASK-006`.
 
 ---
 
 ## Nächster Schritt
 
 ```text
-TASK-005 – Bauplatz auswählen und Aktionspanel anzeigen
+TASK-006 – Gebäudestufen und Ressourcenverbrauch umsetzen
 ```

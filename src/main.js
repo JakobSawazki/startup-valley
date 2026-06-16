@@ -27,7 +27,7 @@
       }
 
       console.log(`Startup Valley Objekt gewählt: ${object.name} (${object.id})`);
-      app.ui.renderObjectMessage(object, actionResult);
+      app.ui.renderObjectMessage(object, actionResult, gameState);
     }
 
     app.ui.renderHud(gameState);

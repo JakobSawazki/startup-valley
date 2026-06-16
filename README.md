@@ -18,7 +18,7 @@ Das Spiel soll bewusst mit einer kleinen Welt starten. Die Interaktion erfolgt p
 
 ## 2. Aktueller Versionsstand
 
-Aktuelle Version: `0.0.6-depletion`
+Aktuelle Version: `0.0.7-build-panel`
 
 Live-Version:
 
@@ -33,7 +33,9 @@ Aktuell umgesetzt:
 - Inventar/HUD links mit Geld, Holz, Stein, Metall und Hausstufe
 - manuelles Sammeln: Baum `+2 Holz`, Stein `+2 Stein`, Schrott `+1 Metall`
 - Ressourcenquellen werden pro Klick kleiner, erschöpfen sich und verschwinden
+- Bauplatzpanel mit aktueller Stufe, nächster Stufe, Anforderungen und aktivem/deaktiviertem Ausbau-Button
 - hochwertiges Favicon / Tab-Icon
+- realistischere transparente PNG-Sprites für Bäume, Steinhaufen und Schrott
 - hochwertige transparente PNG-Icons für Ressourcen
 - Hover-/Focus-Effekte und Infotexte für Inventar und Weltobjekte
 - Kontextpanel für ausgewählte Objekte
@@ -41,7 +43,7 @@ Aktuell umgesetzt:
 
 Noch offen für Version 0.1.0:
 
-- Bauplatzpanel und Gebäudestufen aktiv nutzen
+- Gebäudestufen ausbauen und Ressourcen dabei verbrauchen
 - Marktverkauf
 - Speichern, Laden und Reset über `localStorage`
 
@@ -99,7 +101,7 @@ Aktuelle Richtung:
 
 - Der Hintergrund ist bereits hochwertig und atmosphärisch.
 - Die Inventar-Icons wurden auf realistischere transparente PNGs umgestellt.
-- Die Weltobjekt-Sprites sind austauschbare Platzhalter und sollen in einem späteren Asset-Pass stärker realistisch/fotorealistisch ausgearbeitet werden.
+- Die Ressourcen-Sprites wurden auf realistischere transparente PNGs umgestellt; Gebäude-Sprites bleiben austauschbare Platzhalter für den nächsten Asset-Pass.
 - Beim Austausch neuer PNGs möglichst denselben Dateinamen behalten, damit Code und Daten unverändert bleiben.
 
 ---
@@ -108,6 +110,7 @@ Aktuelle Richtung:
 
 | Version | Datum | Stand |
 |---|---|---|
+| `0.0.7-build-panel` | 2026-06-16 | Bauplatzpanel mit Anforderungen und aktivem/deaktiviertem Ausbau-Button ergänzt; Ressourcen-Sprites realistischer ersetzt |
 | `0.0.6-depletion` | 2026-06-16 | Favicon ergänzt und Ressourcenquellen schrumpfen/verschwinden nach begrenzten Klicks |
 | `0.0.5-collection` | 2026-06-16 | Manuelles Ressourcensammeln, HUD-Aktualisierung und Floating-Feedback ergänzt |
 | `0.0.4-hud` | 2026-06-16 | Zentrales State/HUD-System, hochwertigere Inventar-Icons, Tooltips und Kontextpanel ergänzt |

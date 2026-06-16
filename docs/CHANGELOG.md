@@ -14,6 +14,30 @@ Format:
 
 ---
 
+## [0.0.7-build-panel] – 2026-06-16
+
+### Added
+
+- Bauplatzpanel ergänzt: Klick auf den Bauplatz zeigt aktuelle Stufe, nächste Stufe und Anforderungen.
+- Zentral definierte Gebäudestufen und Baukosten in `src/state.js` ergänzt.
+- Ausbau-Button im Bauplatzpanel ergänzt; er ist deaktiviert, wenn Ressourcen fehlen, und aktiv, wenn die Anforderungen erfüllt sind.
+- Realistischere transparente PNG-Sprites für Bäume, Steinhaufen und Schrott eingebaut.
+
+### Changed
+
+- Kontextpanel rendert für Gebäude jetzt eine eigene Bauansicht statt nur eines allgemeinen Hinweises.
+- CSS/JS-Cache-Version auf `0.0.7` aktualisiert.
+- Weltobjekt `main_house` trägt jetzt die zentrale `buildingId` für spätere Ausbaulogik.
+
+### Fixed
+
+- Keine Spiellogikfehler behoben.
+
+### Docs
+
+- `TASK-005` abgeschlossen und nächsten Schritt auf `TASK-006` aktualisiert.
+- README, `docs/VERSION_STATE.md`, `docs/HANDOFF.md` und `docs/ASSET_GUIDE.md` auf Bauplatzpanel und Ressourcen-Asset-Pass aktualisiert.
+
 ## [0.0.6-depletion] – 2026-06-16
 
 ### Added

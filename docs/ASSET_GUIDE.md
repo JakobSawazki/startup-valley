@@ -31,7 +31,9 @@ assets/
 ├── resources/
 │   ├── tree_01.png
 │   ├── tree_02.png
+│   ├── tree_03.png
 │   ├── stone_01.png
+│   ├── stone_02.png
 │   └── scrap_01.png
 └── ui/
     └── icons/
@@ -186,16 +188,17 @@ Wenn Grafiken ersetzt werden:
 
 ## 11. Aktuelle Qualitätsrichtung
 
-Stand `0.0.4-hud`:
+Stand `0.0.7-build-panel`:
 
 - `assets/backgrounds/start_area.png` ist eine hochwertige atmosphärische Startwelt und kann vorerst bleiben.
 - `assets/ui/icons/*.png` wurden auf realistischere transparente PNG-Icons umgestellt.
-- `assets/resources/*.png` und `assets/buildings/*.png` sind bewusst austauschbare Platzhalter-Sprites.
+- `assets/resources/*.png` wurden auf realistischere transparente PNG-Sprites umgestellt und behalten stabile Dateinamen.
+- `assets/buildings/*.png` sind weiterhin bewusst austauschbare Platzhalter-Sprites.
 - `assets/ui/favicon.png` ist das Browser-Tab-/Homepage-Icon; `favicon.ico` bleibt als Kompatibilitätsdatei im Projektwurzelordner.
 
 Nächster Asset-Pass:
 
-- Bäume, Steine, Schrott, Bauplatz, Markt und Hausstufen stärker realistisch/fotorealistisch ausarbeiten.
+- Bauplatz, Markt und Hausstufen stärker realistisch/fotorealistisch ausarbeiten.
 - Transparente PNGs mit sauberem Rand und ohne Hintergrund verwenden.
 - Dateinamen stabil halten, damit Code und Weltobjektdaten nicht geändert werden müssen.
 - Größe grob beibehalten oder nach Austausch Positionierung in `src/world.js` prüfen.
