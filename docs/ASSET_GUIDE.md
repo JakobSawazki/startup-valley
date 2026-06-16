@@ -41,6 +41,13 @@ assets/
         └── money.png
 ```
 
+Zusätzlich aktuell vorhanden:
+
+```text
+assets/ui/favicon.png
+favicon.ico
+```
+
 ---
 
 ## 3. Empfohlene Grafikgrößen
@@ -184,6 +191,7 @@ Stand `0.0.4-hud`:
 - `assets/backgrounds/start_area.png` ist eine hochwertige atmosphärische Startwelt und kann vorerst bleiben.
 - `assets/ui/icons/*.png` wurden auf realistischere transparente PNG-Icons umgestellt.
 - `assets/resources/*.png` und `assets/buildings/*.png` sind bewusst austauschbare Platzhalter-Sprites.
+- `assets/ui/favicon.png` ist das Browser-Tab-/Homepage-Icon; `favicon.ico` bleibt als Kompatibilitätsdatei im Projektwurzelordner.
 
 Nächster Asset-Pass:
 

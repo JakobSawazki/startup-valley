@@ -5,6 +5,7 @@
     "name": "Baum",
     "resource": "wood",
     "amount": 2,
+    "maxUses": 6,
     "image": "assets/resources/tree_01.png"
   },
   {
@@ -13,6 +14,7 @@
     "name": "Baum",
     "resource": "wood",
     "amount": 2,
+    "maxUses": 6,
     "image": "assets/resources/tree_02.png"
   },
   {
@@ -21,6 +23,7 @@
     "name": "Baum",
     "resource": "wood",
     "amount": 2,
+    "maxUses": 6,
     "image": "assets/resources/tree_03.png"
   },
   {
@@ -29,6 +32,7 @@
     "name": "Steinhaufen",
     "resource": "stone",
     "amount": 2,
+    "maxUses": 5,
     "image": "assets/resources/stone_01.png"
   },
   {
@@ -37,6 +41,7 @@
     "name": "Steinhaufen",
     "resource": "stone",
     "amount": 2,
+    "maxUses": 5,
     "image": "assets/resources/stone_02.png"
   },
   {
@@ -45,6 +50,7 @@
     "name": "Schrott",
     "resource": "metal",
     "amount": 1,
+    "maxUses": 4,
     "image": "assets/resources/scrap_01.png"
   },
   {

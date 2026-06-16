@@ -9,6 +9,7 @@
       description: "Ein hoher Baum am Rand des Startgebiets.",
       resource: "wood",
       amount: 2,
+      maxUses: 6,
       actionLabel: "Holz sammeln",
       rewardLabel: "+2 Holz",
       x: 9,
@@ -23,6 +24,7 @@
       description: "Kräftiges Holz für die ersten Bauphasen.",
       resource: "wood",
       amount: 2,
+      maxUses: 6,
       actionLabel: "Holz sammeln",
       rewardLabel: "+2 Holz",
       x: 20,
@@ -37,6 +39,7 @@
       description: "Ein weiterer Rohstoffpunkt für Holz.",
       resource: "wood",
       amount: 2,
+      maxUses: 6,
       actionLabel: "Holz sammeln",
       rewardLabel: "+2 Holz",
       x: 31,
@@ -51,6 +54,7 @@
       description: "Steine für Fundament und frühe Ausbauten.",
       resource: "stone",
       amount: 2,
+      maxUses: 5,
       actionLabel: "Stein sammeln",
       rewardLabel: "+2 Stein",
       x: 18,
@@ -65,6 +69,7 @@
       description: "Ein zweiter Steinvorrat nahe dem Weg.",
       resource: "stone",
       amount: 2,
+      maxUses: 5,
       actionLabel: "Stein sammeln",
       rewardLabel: "+2 Stein",
       x: 38,
@@ -79,6 +84,7 @@
       description: "Ein kleiner Metallfund für spätere Bauphasen.",
       resource: "metal",
       amount: 1,
+      maxUses: 4,
       actionLabel: "Metall bergen",
       rewardLabel: "+1 Metall",
       x: 51,
@@ -108,7 +114,24 @@
     }
   ];
 
-  function renderWorld(container, onSelectObject) {
+  function getResourceVisualState(gameState, object) {
+    if (object.type !== "resource_node") {
+      return null;
+    }
+
+    const nodeState = window.StartupValley.state.getResourceNodeState(gameState, object.id, object.maxUses);
+    const ratio = nodeState.remainingUses / nodeState.maxUses;
+    const scale = nodeState.remainingUses > 0 ? 0.55 + ratio * 0.45 : 0.12;
+
+    return {
+      nodeState,
+      ratio,
+      scale,
+      depleted: nodeState.remainingUses <= 0
+    };
+  }
+
+  function renderWorld(container, gameState, onSelectObject) {
     if (!container) {
       return;
     }
@@ -123,9 +146,29 @@
       button.style.left = `${object.x}%`;
       button.style.top = `${object.y}%`;
       button.style.width = `${object.width}%`;
+      button.style.setProperty("--resource-scale", "1");
       button.setAttribute("aria-label", object.name);
       button.title = object.name;
       button.dataset.tooltip = object.description;
+
+      const resourceVisualState = getResourceVisualState(gameState, object);
+
+      if (resourceVisualState) {
+        const { nodeState, scale, depleted } = resourceVisualState;
+
+        button.style.setProperty("--resource-scale", scale.toFixed(3));
+        button.dataset.remainingUses = String(nodeState.remainingUses);
+        button.dataset.maxUses = String(nodeState.maxUses);
+        button.setAttribute("aria-label", `${object.name}, ${nodeState.remainingUses} von ${nodeState.maxUses} Abbaupunkten übrig`);
+        button.title = depleted ? `${object.name} ist erschöpft` : `${object.name}: ${nodeState.remainingUses}/${nodeState.maxUses} übrig`;
+
+        if (depleted) {
+          button.classList.add("is-depleted");
+          button.disabled = true;
+          button.tabIndex = -1;
+          button.setAttribute("aria-hidden", "true");
+        }
+      }
 
       const image = document.createElement("img");
       image.src = object.image;

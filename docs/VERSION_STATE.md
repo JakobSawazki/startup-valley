@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.5-collection
+0.0.6-depletion
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD und erstem Ressourcen-Sammelloop.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt, zentralem Spielzustand, aufgewertetem Inventar/HUD und erschöpfbaren Ressourcenquellen.
 
 Online erreichbar:
 
@@ -35,9 +35,12 @@ Implementiert:
 - Baumklick erhöht Holz um 2
 - Steinklick erhöht Stein um 2
 - Schrottklick erhöht Metall um 1
+- Ressourcenquellen haben begrenzte Abbaupunkte, schrumpfen pro Klick und verschwinden bei 0
+- erschöpfte Ressourcenquellen sind deaktiviert und nicht weiter abbaubar
 - HUD/Inventar mit korrekten Startwerten 0 für Geld, Holz, Stein, Metall und Hausstufe
 - HUD aktualisiert sich sofort nach Sammelaktionen
 - Floating-Text zeigt den erhaltenen Ressourcenwert
+- Favicon und Browser-Tab-Icon unter `assets/ui/favicon.png` und `favicon.ico`
 - hochwertige realistischere PNG-Icons für Geld, Holz, Stein und Metall
 - Hover-/Focus-Tooltips für Inventar und Weltobjekte
 - Kontextpanel mit vorbereiteten Interaktionshinweisen
@@ -94,7 +97,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-TASK-004 abgeschlossen: Ressourcenquellen erhöhen den zentralen gameState und aktualisieren das Inventar sofort. 5 Baumklicks ergeben Holz 10, 3 Steinklicks ergeben Stein 6.
+Ressourcenquellen sind erschöpfbar: Bäume haben 6 Abbaupunkte, Steinhaufen 5 und Schrott 4. Quellen werden kleiner, verschwinden bei 0 und erhöhen danach keine Ressourcen mehr.
 ```
 
 ---
@@ -105,7 +108,7 @@ TASK-004 abgeschlossen: Ressourcenquellen erhöhen den zentralen gameState und a
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar und manuellem Sammeln aus TASK-004.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die Startwelt mit Inventar, manuellem Sammeln und erschöpfbaren Ressourcenquellen.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
 - Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
 

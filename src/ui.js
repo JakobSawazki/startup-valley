@@ -133,6 +133,15 @@
       return;
     }
 
+    if (actionResult && actionResult.depleted) {
+      messageLine.innerHTML = `
+        <span class="context-kicker context-kicker-depleted">Erschöpft</span>
+        <span class="context-description">${escapeHtml(object.description)}</span>
+        <span class="context-action">${escapeHtml(actionResult.message)}</span>
+      `;
+      return;
+    }
+
     messageLine.innerHTML = `
       <span class="context-kicker">${escapeHtml(getObjectKicker(object))}</span>
       <span class="context-description">${escapeHtml(object.description)}</span>

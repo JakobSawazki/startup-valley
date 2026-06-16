@@ -44,7 +44,7 @@
   };
 
   const initialState = {
-    version: "0.0.5",
+    version: "0.0.6",
     money: 0,
     resources: {
       wood: 0,
@@ -56,6 +56,7 @@
         level: 0
       }
     },
+    resourceNodes: {},
     selectedObjectId: null,
     message: "Wähle ein Objekt im Startgebiet aus."
   };
@@ -98,6 +99,39 @@
     return gameState.resources[resourceId];
   }
 
+  function ensureResourceNode(gameState, objectId, maxUses) {
+    if (!gameState.resourceNodes[objectId]) {
+      gameState.resourceNodes[objectId] = {
+        maxUses,
+        remainingUses: maxUses
+      };
+    }
+
+    return gameState.resourceNodes[objectId];
+  }
+
+  function consumeResourceNode(gameState, objectId, maxUses) {
+    const nodeState = ensureResourceNode(gameState, objectId, maxUses);
+
+    if (nodeState.remainingUses <= 0) {
+      return {
+        success: false,
+        nodeState
+      };
+    }
+
+    nodeState.remainingUses = Math.max(0, nodeState.remainingUses - 1);
+
+    return {
+      success: true,
+      nodeState
+    };
+  }
+
+  function getResourceNodeState(gameState, objectId, maxUses) {
+    return ensureResourceNode(gameState, objectId, maxUses);
+  }
+
   function selectObject(gameState, objectId) {
     gameState.selectedObjectId = objectId;
   }
@@ -112,6 +146,9 @@
     getResourceAmount,
     getHouseLevel,
     addResource,
+    ensureResourceNode,
+    consumeResourceNode,
+    getResourceNodeState,
     selectObject
   };
 })();

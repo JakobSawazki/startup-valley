@@ -18,7 +18,7 @@ Das Spiel soll bewusst mit einer kleinen Welt starten. Die Interaktion erfolgt p
 
 ## 2. Aktueller Versionsstand
 
-Aktuelle Version: `0.0.5-collection`
+Aktuelle Version: `0.0.6-depletion`
 
 Live-Version:
 
@@ -32,6 +32,8 @@ Aktuell umgesetzt:
 - zentrales `gameState`-Objekt in JavaScript
 - Inventar/HUD links mit Geld, Holz, Stein, Metall und Hausstufe
 - manuelles Sammeln: Baum `+2 Holz`, Stein `+2 Stein`, Schrott `+1 Metall`
+- Ressourcenquellen werden pro Klick kleiner, erschöpfen sich und verschwinden
+- hochwertiges Favicon / Tab-Icon
 - hochwertige transparente PNG-Icons für Ressourcen
 - Hover-/Focus-Effekte und Infotexte für Inventar und Weltobjekte
 - Kontextpanel für ausgewählte Objekte
@@ -106,6 +108,7 @@ Aktuelle Richtung:
 
 | Version | Datum | Stand |
 |---|---|---|
+| `0.0.6-depletion` | 2026-06-16 | Favicon ergänzt und Ressourcenquellen schrumpfen/verschwinden nach begrenzten Klicks |
 | `0.0.5-collection` | 2026-06-16 | Manuelles Ressourcensammeln, HUD-Aktualisierung und Floating-Feedback ergänzt |
 | `0.0.4-hud` | 2026-06-16 | Zentrales State/HUD-System, hochwertigere Inventar-Icons, Tooltips und Kontextpanel ergänzt |
 | `0.0.3-world` | 2026-06-16 | Grafische PNG-Startwelt mit klickbaren Weltobjekten veröffentlicht |

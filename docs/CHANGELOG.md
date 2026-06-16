@@ -14,6 +14,31 @@ Format:
 
 ---
 
+## [0.0.6-depletion] – 2026-06-16
+
+### Added
+
+- Hochwertiges Favicon / Browser-Tab-Icon ergänzt.
+- `favicon.ico` und `assets/ui/favicon.png` erstellt.
+- Ressourcenquellen besitzen jetzt begrenzte Abbaupunkte.
+- Bäume haben 6, Steinhaufen 5 und Schrott 4 Abbaupunkte.
+- Ressourcenquellen schrumpfen pro Klick sichtbar über ihren Restzustand.
+- Erschöpfte Ressourcenquellen verschwinden visuell und werden deaktiviert.
+
+### Changed
+
+- Welt-Rendering berücksichtigt jetzt den Zustand einzelner Ressourcenquellen aus `gameState.resourceNodes`.
+- CSS/JS-Cache-Version auf `0.0.6` aktualisiert.
+- `data/world_start.json` um `maxUses` für Ressourcenquellen ergänzt.
+
+### Fixed
+
+- Erschöpfte Ressourcenquellen können nicht weiter abgebaut werden und erhöhen keine Ressourcen mehr.
+
+### Docs
+
+- README, `docs/VERSION_STATE.md`, `docs/HANDOFF.md` und `docs/ASSET_GUIDE.md` auf Favicon und Ressourcenerschöpfung aktualisiert.
+
 ## [0.0.5-collection] – 2026-06-16
 
 ### Added
