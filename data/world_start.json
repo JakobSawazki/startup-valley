@@ -1,0 +1,63 @@
+[
+  {
+    "id": "tree_01",
+    "type": "resource_node",
+    "name": "Baum",
+    "resource": "wood",
+    "amount": 2,
+    "image": "assets/resources/tree_01.png"
+  },
+  {
+    "id": "tree_02",
+    "type": "resource_node",
+    "name": "Baum",
+    "resource": "wood",
+    "amount": 2,
+    "image": "assets/resources/tree_02.png"
+  },
+  {
+    "id": "tree_03",
+    "type": "resource_node",
+    "name": "Baum",
+    "resource": "wood",
+    "amount": 2,
+    "image": "assets/resources/tree_03.png"
+  },
+  {
+    "id": "stone_01",
+    "type": "resource_node",
+    "name": "Steinhaufen",
+    "resource": "stone",
+    "amount": 2,
+    "image": "assets/resources/stone_01.png"
+  },
+  {
+    "id": "stone_02",
+    "type": "resource_node",
+    "name": "Steinhaufen",
+    "resource": "stone",
+    "amount": 2,
+    "image": "assets/resources/stone_02.png"
+  },
+  {
+    "id": "scrap_01",
+    "type": "resource_node",
+    "name": "Schrott",
+    "resource": "metal",
+    "amount": 1,
+    "image": "assets/resources/scrap_01.png"
+  },
+  {
+    "id": "main_house",
+    "type": "building",
+    "name": "Bauplatz",
+    "buildingId": "mainHouse",
+    "image": "assets/buildings/house_00_plot.png"
+  },
+  {
+    "id": "market_01",
+    "type": "market",
+    "name": "Markt",
+    "image": "assets/buildings/market_01.png"
+  }
+]

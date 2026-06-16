@@ -14,6 +14,31 @@ Format:
 
 ---
 
+## [0.0.3-world] – 2026-06-16
+
+### Added
+
+- PNG-Hintergrund `assets/backgrounds/start_area.png` für die Startwelt ergänzt.
+- Austauschbare transparente PNG-Objekte für Bäume, Steine, Schrott, Bauplatz, Markt und Hausstufen ergänzt.
+- PNG-Icons für Geld, Holz, Stein und Metall ergänzt.
+- `src/world.js` für datengetriebenes Rendern der statischen Startwelt ergänzt.
+- `data/world_start.json` als vorbereitete Weltobjekt-Referenz ergänzt.
+
+### Changed
+
+- Spielwelt von CSS-Platzhaltern auf visuelle PNG-Assets umgestellt.
+- HUD visuell mit Ressourcen-Icons aufgewertet.
+- Objektklicks aktualisieren jetzt das Kontextpanel und schreiben eine Konsolenmeldung.
+
+### Fixed
+
+- Keine Spiellogikfehler behoben.
+
+### Docs
+
+- `TASK-002` abgeschlossen und nächsten Schritt auf `TASK-003` aktualisiert.
+- `docs/VERSION_STATE.md` und `docs/HANDOFF.md` auf die grafische Startwelt aktualisiert.
+
 ## [0.0.2-online] – 2026-06-16
 
 ### Added

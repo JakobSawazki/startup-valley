@@ -1,18 +1,14 @@
 :root {
-  --bg: #101820;
-  --panel: #17212b;
-  --panel-strong: #1f2d3a;
-  --line: #2b3c4e;
+  --bg: #0e1419;
+  --panel: #17232c;
+  --panel-strong: #22303b;
+  --line: #354958;
   --text: #f4f7fb;
   --muted: #b9c5d3;
   --accent: #39a7a5;
   --accent-strong: #f2b84b;
-  --field: #6aa05f;
-  --field-dark: #4f8149;
-  --yard: #8d7860;
-  --stone: #9aa5b1;
-  --wood: #7a5a33;
-  --metal: #79818d;
+  --success: #7ccf8a;
+  --warm: #c87b47;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -25,7 +21,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(57, 167, 165, 0.15), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(242, 184, 75, 0.12), transparent 34%),
+    linear-gradient(160deg, #0b1116 0%, var(--bg) 58%, #15100d 100%);
 }
 
 button,
@@ -36,7 +35,7 @@ textarea {
 }
 
 .app-shell {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 32px));
   margin: 0 auto;
   padding: 24px 0;
 }
@@ -89,9 +88,14 @@ p {
   font-size: 0.9rem;
 }
 
+.status-pill {
+  border-color: rgba(124, 207, 138, 0.45);
+  color: #d8f8dd;
+}
+
 .game-layout {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: 230px minmax(0, 1fr);
   gap: 16px;
 }
 
@@ -113,12 +117,38 @@ p {
 }
 
 .resource-card {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
   min-height: 46px;
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 12px;
-  background: var(--panel-strong);
+  padding: 8px 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent),
+    var(--panel-strong);
   color: var(--text);
+}
+
+.resource-card img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.resource-card span {
+  display: grid;
+  gap: 2px;
+}
+
+.resource-card strong {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.resource-card b {
+  font-size: 1.05rem;
 }
 
 .world-panel {
@@ -140,83 +170,87 @@ p {
 
 .game-world {
   position: relative;
-  min-height: 520px;
+  min-height: 580px;
   overflow: hidden;
-  background: var(--field);
+  background:
+    linear-gradient(180deg, rgba(8, 13, 17, 0.05), rgba(8, 13, 17, 0.16)),
+    url("../assets/backgrounds/start_area.png") center / cover no-repeat;
+  isolation: isolate;
 }
 
-.terrain {
+.world-vignette {
   position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 42%, transparent 0 44%, rgba(10, 14, 18, 0.14) 83%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.08));
+}
+
+.world-object {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transform: translateZ(0);
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.world-object img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 12px rgba(0, 0, 0, 0.32));
   pointer-events: none;
 }
 
-.terrain-field {
-  inset: 0;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 72px),
-    linear-gradient(45deg, var(--field), var(--field-dark));
-}
-
-.terrain-yard {
-  right: -90px;
-  bottom: -70px;
-  width: 62%;
-  height: 52%;
-  border-radius: 48% 0 0 0;
-  background: var(--yard);
-  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.09);
-}
-
-.placeholder-object {
-  position: absolute;
-  display: grid;
+.world-object span {
+  display: inline-grid;
   place-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  border-radius: 8px;
-  color: #08111a;
-  font-size: 0.88rem;
+  min-height: 24px;
+  max-width: 140px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 7px;
+  padding: 3px 8px;
+  color: #f8fbff;
+  background: rgba(12, 18, 24, 0.72);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.26);
+  font-size: 0.76rem;
   font-weight: 700;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.tree-preview {
-  left: 12%;
-  top: 18%;
-  width: 96px;
-  height: 128px;
-  background: #3f7f46;
+.world-object:hover,
+.world-object:focus-visible {
+  z-index: 5;
+  filter: brightness(1.08);
+  transform: translateY(-4px);
 }
 
-.stone-preview {
-  left: 30%;
-  bottom: 18%;
-  width: 100px;
-  height: 76px;
-  background: var(--stone);
+.world-object:focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 5px;
 }
 
-.scrap-preview {
-  left: 48%;
-  top: 25%;
-  width: 108px;
-  height: 76px;
-  background: var(--metal);
+.world-object-resource_node span {
+  border-color: rgba(124, 207, 138, 0.5);
 }
 
-.plot-preview {
-  right: 23%;
-  bottom: 22%;
-  width: 220px;
-  height: 150px;
-  background: #d2bf9d;
+.world-object-building span {
+  border-color: rgba(242, 184, 75, 0.62);
 }
 
-.market-preview {
-  right: 8%;
-  top: 18%;
-  width: 150px;
-  height: 110px;
-  background: var(--accent-strong);
+.world-object-market span {
+  border-color: rgba(57, 167, 165, 0.62);
 }
 
 .context-panel {
@@ -245,11 +279,21 @@ p {
   }
 
   .game-world {
-    min-height: 440px;
+    min-height: 500px;
   }
 
-  .plot-preview {
-    right: 12%;
-    width: 180px;
+  .world-object span {
+    font-size: 0.68rem;
+    max-width: 110px;
+  }
+}
+
+@media (max-width: 560px) {
+  .game-world {
+    min-height: 430px;
+  }
+
+  .world-object span {
+    display: none;
   }
 }

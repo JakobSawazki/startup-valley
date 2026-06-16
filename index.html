@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <script src="src/state.js" defer></script>
     <script src="src/ui.js" defer></script>
+    <script src="src/world.js" defer></script>
     <script src="src/main.js" defer></script>
   </head>
   <body>
@@ -16,7 +17,7 @@
           <p class="eyebrow">Browser-Aufbauspiel</p>
           <h1>Startup Valley</h1>
         </div>
-        <div class="build-label" id="build-label">Version 0.0.1</div>
+        <div class="build-label" id="build-label">Version 0.0.3</div>
       </header>
 
       <main class="game-layout" aria-label="Startup Valley Spielfeld">
@@ -33,26 +34,20 @@
         <section class="world-panel" aria-labelledby="world-title">
           <div class="world-header">
             <div>
-              <h2 id="world-title">Startwelt</h2>
-              <p>Grundlayout fuer Spielbereich, HUD und spaetere klickbare Objekte.</p>
+              <h2 id="world-title">Startgebiet</h2>
+              <p>Ein freier Standort, erste Rohstoffe und ein kleiner Markt.</p>
             </div>
             <span class="status-pill" id="app-status">Wird geladen</span>
           </div>
 
-          <div class="game-world" id="game-world" role="img" aria-label="Platzhalter-Spielwelt mit Wiese, Wegen und Bauzone">
-            <div class="terrain terrain-field"></div>
-            <div class="terrain terrain-yard"></div>
-            <div class="placeholder-object tree-preview" aria-hidden="true">Baum</div>
-            <div class="placeholder-object stone-preview" aria-hidden="true">Stein</div>
-            <div class="placeholder-object scrap-preview" aria-hidden="true">Schrott</div>
-            <div class="placeholder-object plot-preview" aria-hidden="true">Bauplatz</div>
-            <div class="placeholder-object market-preview" aria-hidden="true">Markt</div>
+          <div class="game-world" id="game-world" aria-label="Startgebiet von Startup Valley">
+            <div class="world-vignette" aria-hidden="true"></div>
           </div>
         </section>
 
         <aside class="context-panel" aria-labelledby="context-title">
-          <h2 id="context-title">Status</h2>
-          <p id="message-line">Startup Valley ist bereit fuer die ersten Spielsysteme.</p>
+          <h2 id="context-title">Startgebiet</h2>
+          <p id="message-line">Wähle ein Objekt im Startgebiet aus.</p>
         </aside>
       </main>
     </div>

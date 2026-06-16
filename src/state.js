@@ -2,7 +2,7 @@
   "use strict";
 
   const initialState = {
-    version: "0.0.1",
+    version: "0.0.3",
     money: 0,
     resources: {
       wood: 0,
@@ -15,7 +15,7 @@
       }
     },
     selectedObjectId: null,
-    message: "Startup Valley ist bereit fuer die ersten Spielsysteme."
+    message: "Wähle ein Objekt im Startgebiet aus."
   };
 
   window.StartupValley = window.StartupValley || {};

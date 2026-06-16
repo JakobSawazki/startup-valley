@@ -7,7 +7,7 @@ Diese Datei muss nach jedem abgeschlossenen Arbeitsschritt aktualisiert werden.
 ## 1. Aktueller Stand
 
 **Projekt:** Startup Valley  
-**Version:** 0.0.2-online
+**Version:** 0.0.3-world
 **Deployment:** erfolgreich über GitHub Pages
 **Repository:** https://github.com/JakobSawazki/startup-valley
 **GitHub Pages URL:** https://jakobsawazki.github.io/startup-valley/
@@ -19,19 +19,23 @@ Letzter bestätigter Test:
 - Geprüft: Titel `Startup Valley`, sichtbares HUD, sichtbare Spielwelt, CSS geladen, keine Browser-Fehler/Warnungen.
 - Live-Smoke-Test auf GitHub Pages erfolgreich: Titel, HUD, Spielwelt, CSS und JS korrekt geladen, keine Browser-Fehler/Warnungen.
 - Erfolgreiche GitHub-Actions-Läufe: `27638777888` (Push), `27638791425` (manuell).
+- TASK-002 lokaler Browser-Test erfolgreich: 8 Weltobjekte gerendert und angeklickt, Kontextpanel aktualisiert, keine Browser-Fehler/Warnungen.
 
 ---
 
 ## 2. Was existiert aktuell?
 
-Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie die erste lauffähige HTML/CSS/JS-Grundstruktur für eine browserbasierte Wirtschafts- und Aufbausimulation.
+Dieses Projekt enthält die Planungs- und Codex-Dokumentation sowie eine lauffähige HTML/CSS/JS-Grundstruktur mit grafischer PNG-Startwelt.
 
 Enthalten:
 
-- `index.html` mit sichtbarem Spielbereich und HUD-Platzhalter
+- `index.html` mit sichtbarem Spielbereich und HUD
 - `styles/main.css`
-- `src/main.js`, `src/state.js`, `src/ui.js`
-- `assets/` und `data/` Grundstruktur
+- `src/main.js`, `src/state.js`, `src/ui.js`, `src/world.js`
+- PNG-Hintergrund `assets/backgrounds/start_area.png`
+- transparente PNG-Objekte in `assets/resources/` und `assets/buildings/`
+- PNG-Icons in `assets/ui/icons/`
+- `data/world_start.json`
 - Projektbeschreibung
 - Agentenregeln
 - Aufgabenplan
@@ -57,6 +61,21 @@ Geänderte Dateien in TASK-001:
 - mehrere Dokumentationsdateien für Projektname, Version, Handoff und Deployment-Hinweise
 - `.github/workflows/deploy.yml` für GitHub Pages mit Node-24-Opt-in
 
+Geänderte Dateien in TASK-002:
+
+- `index.html`
+- `styles/main.css`
+- `src/main.js`
+- `src/state.js`
+- `src/ui.js`
+- `src/world.js`
+- `data/world_start.json`
+- `assets/backgrounds/start_area.png`
+- `assets/resources/tree_01.png`, `tree_02.png`, `tree_03.png`
+- `assets/resources/stone_01.png`, `stone_02.png`, `scrap_01.png`
+- `assets/buildings/house_00_plot.png`, `house_01_foundation.png`, `house_02_frame.png`, `house_03_finished.png`, `market_01.png`
+- `assets/ui/icons/money.png`, `wood.png`, `stone.png`, `metal.png`
+
 ---
 
 ## 3. Nächster notwendiger Schritt
@@ -64,7 +83,7 @@ Geänderte Dateien in TASK-001:
 Der nächste Codex-Agent soll in `TASKS.md` die erste offene Aufgabe bearbeiten:
 
 ```text
-TASK-002 – Startwelt als statische Szene anzeigen
+TASK-003 – Spielzustand und HUD einführen
 ```
 
 ---
@@ -93,15 +112,16 @@ Du arbeitest am Projekt "Startup Valley", einer browserbasierten klickbaren Wirt
 
 ---
 
-## 6. Testanleitung nach TASK-001
+## 6. Testanleitung nach TASK-002
 
-Nach Erstellung der Grundstruktur:
+Nach der grafischen Startwelt:
 
 1. `index.html` lokal im Browser öffnen.
-2. Prüfen, ob Spielbereich und HUD-Platzhalter sichtbar sind.
+2. Prüfen, ob PNG-Hintergrund, HUD-Icons und Weltobjekte sichtbar sind.
 3. DevTools öffnen.
-4. Prüfen, ob keine JavaScript-Fehler auftreten.
-5. In `docs/CHANGELOG.md` dokumentieren.
+4. Alle Bäume, Steinhaufen, Schrott, Bauplatz und Markt anklicken.
+5. Prüfen, ob das Kontextpanel den Objektnamen zeigt.
+6. Prüfen, ob keine JavaScript-Fehler auftreten.
 
 ---
 
@@ -138,6 +158,7 @@ Aktuellen Stand mit `git log -1 --oneline` prüfen. Der erste erfolgreich deploy
 
 - finaler Projektname: aktuell `Startup Valley`
 - Grafikstil: moderne 2D-/Top-Down-/leicht isometrische Richtung
+- Assets: aktuelle PNGs sind hochwertige Platzhalter und dürfen später unter gleichem Dateinamen ersetzt werden
 - Repositoryname: Empfehlung `startup-valley`
 - Repository ist öffentlich für einfaches Pages-Deployment
 

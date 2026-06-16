@@ -46,7 +46,7 @@ Codex-Regel: Immer nur die erste Aufgabe mit Status `OPEN` bearbeiten.
 
 ### TASK-002 – Startwelt als statische Szene anzeigen
 
-**Status:** OPEN  
+**Status:** DONE
 **Ziel:** Eine kleine Startwelt mit Hintergrund und klickbaren Platzhalterobjekten darstellen.
 
 **Umfang:**

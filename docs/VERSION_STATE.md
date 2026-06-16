@@ -5,14 +5,14 @@
 ## Aktuelle Version
 
 ```text
-0.0.2-online
+0.0.3-world
 ```
 
 ---
 
 ## Aktueller Zustand
 
-Das Projekt besitzt eine erste lauffähige Browser-Grundstruktur.
+Das Projekt besitzt eine lauffähige Browser-Grundstruktur mit grafischer Startwelt.
 
 Online erreichbar:
 
@@ -26,13 +26,15 @@ Implementiert:
 - `src/main.js`
 - `src/state.js`
 - `src/ui.js`
-- sichtbarer Spielbereich mit Platzhalterwelt
-- HUD-Platzhalter mit Geld, Holz, Stein, Metall und Hausstufe
-- `assets/` und `data/` Grundstruktur
+- `src/world.js`
+- sichtbarer Spielbereich mit PNG-Hintergrund
+- klickbare Weltobjekte: 3 Bäume, 2 Steinhaufen, Schrott, Bauplatz, Markt
+- HUD mit PNG-Icons für Geld, Holz, Stein, Metall und Hausstufe
+- austauschbare PNG-Assets unter `assets/backgrounds/`, `assets/resources/`, `assets/buildings/` und `assets/ui/icons/`
+- `data/world_start.json` als vorbereitete Datenreferenz
 
 Noch nicht implementiert:
 
-- klickbare Weltobjekte
 - Ressourcenlogik
 - Bauplatzlogik
 - Marktlogik
@@ -82,7 +84,7 @@ Version 0.1.0 ist erreicht, wenn:
 ## Letzter stabiler Stand
 
 ```text
-TASK-001 abgeschlossen und über GitHub Pages veröffentlicht. index.html rendert Startup Valley mit HUD und Spielbereich. JavaScript und CSS werden über relative Pfade geladen.
+TASK-002 abgeschlossen: Startup Valley rendert eine grafische PNG-Startwelt, zeigt mindestens 3 Bäume, 2 Steinhaufen, Bauplatz und Markt und erkennt Klicks auf jedes Objekt.
 ```
 
 ---
@@ -93,13 +95,14 @@ TASK-001 abgeschlossen und über GitHub Pages veröffentlicht. index.html render
 - Zu viele Ressourcen am Anfang könnten UX überladen.
 - GitHub Pages kann bei falschen Pfaden CSS/JS nicht laden.
 - Wenn mehrere Laptops ohne `git pull` arbeiten, entstehen Konflikte.
-- Vollständige Spielmechanik fehlt noch; online ist aktuell die Grundstruktur aus TASK-001.
+- Vollständige Spielmechanik fehlt noch; online ist aktuell die statische Startwelt aus TASK-002.
 - GitHub-Actions-Warnungen zu Node-Versionen weiter beobachten; Workflow setzt bereits `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24`.
+- Der generierte Hintergrund enthält dekorative Marktelemente; die spielrelevanten Objekte liegen trotzdem als separate austauschbare PNGs darüber.
 
 ---
 
 ## Nächster Schritt
 
 ```text
-TASK-002 – Startwelt als statische Szene anzeigen
+TASK-003 – Spielzustand und HUD einführen
 ```
