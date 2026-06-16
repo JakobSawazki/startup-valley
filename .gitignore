@@ -1,0 +1,22 @@
+# Betriebssystem / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporäre Dateien
+*.tmp
+*.bak
+
+# Node optional, falls später Build-Tools eingeführt werden
+node_modules/
+dist/
+
+# Keine privaten Dateien ins Repository legen
+private/
+secrets/
+.env
+.env.*

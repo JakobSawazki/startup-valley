@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Startup Valley</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="src/state.js" defer></script>
+    <script src="src/ui.js" defer></script>
+    <script src="src/main.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">Browser-Aufbauspiel</p>
+          <h1>Startup Valley</h1>
+        </div>
+        <div class="build-label" id="build-label">Version 0.0.1</div>
+      </header>
+
+      <main class="game-layout" aria-label="Startup Valley Spielfeld">
+        <section class="hud" aria-labelledby="hud-title">
+          <h2 id="hud-title">HUD</h2>
+          <div class="resource-grid" id="resource-grid">
+            <div class="resource-card">Geld: 0 EUR</div>
+            <div class="resource-card">Holz: 0</div>
+            <div class="resource-card">Stein: 0</div>
+            <div class="resource-card">Metall: 0</div>
+          </div>
+        </section>
+
+        <section class="world-panel" aria-labelledby="world-title">
+          <div class="world-header">
+            <div>
+              <h2 id="world-title">Startwelt</h2>
+              <p>Grundlayout fuer Spielbereich, HUD und spaetere klickbare Objekte.</p>
+            </div>
+            <span class="status-pill" id="app-status">Wird geladen</span>
+          </div>
+
+          <div class="game-world" id="game-world" role="img" aria-label="Platzhalter-Spielwelt mit Wiese, Wegen und Bauzone">
+            <div class="terrain terrain-field"></div>
+            <div class="terrain terrain-yard"></div>
+            <div class="placeholder-object tree-preview" aria-hidden="true">Baum</div>
+            <div class="placeholder-object stone-preview" aria-hidden="true">Stein</div>
+            <div class="placeholder-object scrap-preview" aria-hidden="true">Schrott</div>
+            <div class="placeholder-object plot-preview" aria-hidden="true">Bauplatz</div>
+            <div class="placeholder-object market-preview" aria-hidden="true">Markt</div>
+          </div>
+        </section>
+
+        <aside class="context-panel" aria-labelledby="context-title">
+          <h2 id="context-title">Status</h2>
+          <p id="message-line">Startup Valley ist bereit fuer die ersten Spielsysteme.</p>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>
