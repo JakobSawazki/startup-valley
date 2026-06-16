@@ -33,6 +33,7 @@ Format:
 ### Fixed
 
 - Ressourcenwerte bleiben beim Sammeln nicht negativ und werden zentral über State-Funktionen geändert.
+- CSS- und JavaScript-Dateien werden mit Versionsquery geladen, damit GitHub Pages nach Deployments keine alte Spiellogik aus dem Browsercache verwendet.
 
 ### Docs
 
